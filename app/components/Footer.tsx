@@ -1,54 +1,37 @@
 export default function Footer() {
   return (
-    <footer className="bg-[#1F1F1F] text-white py-16">
-      <div className="max-w-7xl mx-auto px-8">
+    <footer className="min-h-[90px] border-t border-[#D8B46A] bg-[#171717] text-white">
+      <div className="mx-auto flex h-full w-full max-w-7xl flex-col gap-4 px-6 py-6 text-xs md:flex-row md:items-center md:justify-between md:px-10 lg:px-14">
+        <p className="font-serif text-sm">Halo &amp; Pine</p>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <p className="text-white/75">© 2026 Halo &amp; Pine. All rights reserved.</p>
 
-          <div>
-            <h3 className="text-3xl font-serif">
-              Halo & Pine
-            </h3>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://instagram.com"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full p-1 text-white/85 transition duration-300 hover:text-[#D8B46A]"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
 
-            <p className="mt-5 text-gray-400 leading-8">
-              Thoughtful wedding coordination for couples who want to be fully
-              present on their wedding day.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="uppercase tracking-[0.3em] text-[#C8B48A] text-sm">
-              Navigation
-            </h4>
-
-            <ul className="mt-6 space-y-3 text-gray-300">
-              <li>Home</li>
-              <li>Services</li>
-              <li>Meet Your Planner</li>
-              <li>Contact</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="uppercase tracking-[0.3em] text-[#C8B48A] text-sm">
-              Contact
-            </h4>
-
-            <p className="mt-6 text-gray-300">
-              Port Coquitlam, BC
-            </p>
-
-            <p className="mt-2 text-gray-300">
-              hello@haloandpine.com
-            </p>
-          </div>
-
+          <a
+            href="mailto:info@haloandpine.ca"
+            aria-label="Email"
+            className="rounded-full p-1 text-white/85 transition duration-300 hover:text-[#D8B46A]"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2.5" y="5" width="19" height="14" rx="2" />
+              <path d="M3.5 6.5L12 13l8.5-6.5" />
+            </svg>
+          </a>
         </div>
-
-        <div className="border-t border-white/10 mt-16 pt-8 text-center text-gray-500 text-sm">
-          © 2026 Halo & Pine. All Rights Reserved.
-        </div>
-
       </div>
     </footer>
   );

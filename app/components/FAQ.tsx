@@ -52,20 +52,23 @@ export default function FAQ() {
               className="rounded-3xl bg-white shadow-sm overflow-hidden"
             >
               <button
+                type="button"
                 onClick={() => setOpen(open === index ? null : index)}
+                aria-expanded={open === index}
+                aria-controls={`faq-panel-${index}`}
                 className="w-full flex justify-between items-center p-8 text-left"
               >
                 <span className="text-xl font-medium">
                   {faq.question}
                 </span>
 
-                <span className="text-3xl text-[#C8B48A]">
+                <span aria-hidden="true" className="text-3xl text-[#8A7247]">
                   {open === index ? "−" : "+"}
                 </span>
               </button>
 
               {open === index && (
-                <div className="px-8 pb-8 text-gray-600 leading-8">
+                <div id={`faq-panel-${index}`} className="px-8 pb-8 text-gray-600 leading-8">
                   {faq.answer}
                 </div>
               )}

@@ -7,14 +7,14 @@ export default function MeetPlanner() {
 
         <Image
           src="/kajal.jpg"
-          alt="Kajal"
+          alt="Kajal, founder of Halo and Pine"
           width={780}
           height={980}
           className="rounded-[32px] object-cover shadow-2xl"
         />
 
         <div>
-          <p className="uppercase tracking-[0.45em] text-[#C8B48A] text-sm">
+          <p className="uppercase tracking-[0.45em] text-[#8A7247] text-sm">
             MEET YOUR PLANNER
           </p>
 
@@ -22,7 +22,7 @@ export default function MeetPlanner() {
             Hi, I'm Kajal.
           </h2>
 
-          <p className="mt-4 uppercase tracking-[0.3em] text-[#C8B48A] text-sm">
+          <p className="mt-4 uppercase tracking-[0.3em] text-[#8A7247] text-sm">
             Founder of Halo & Pine
           </p>
 
@@ -61,7 +61,7 @@ export default function MeetPlanner() {
               your next chapter.
             </p>
 
-            <p className="font-serif text-xl text-[#C8B48A]">
+            <p className="font-serif text-xl text-[#8A7247]">
               God bless!
             </p>
           </div>

@@ -1,4 +1,31 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Meet Your Planner | Halo & Pine",
+  description:
+    "Meet your wedding planner and learn about the calm, thoughtful approach behind Halo & Pine wedding coordination.",
+  openGraph: {
+    title: "Meet Your Planner | Halo & Pine",
+    description:
+      "Meet your wedding planner and learn about the calm, thoughtful approach behind Halo & Pine wedding coordination.",
+    images: [
+      {
+        url: "/logo.PNG",
+        width: 1200,
+        height: 630,
+        alt: "Halo & Pine",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meet Your Planner | Halo & Pine",
+    description:
+      "Meet your wedding planner and learn about the calm, thoughtful approach behind Halo & Pine wedding coordination.",
+    images: ["/logo.PNG"],
+  },
+};
 
 export default function PlannerPage() {
   return (
@@ -8,15 +35,16 @@ export default function PlannerPage() {
 
         <Image
           src="/kajal.jpg"
-          alt="Kajal"
+          alt="Kajal, the wedding planner behind Halo and Pine"
           width={780}
           height={980}
+          sizes="(min-width: 768px) 50vw, 100vw"
           className="rounded-[32px] object-cover shadow-2xl"
         />
 
         <div>
 
-          <p className="uppercase tracking-[0.45em] text-[#C8B48A] text-sm">
+          <p className="uppercase tracking-[0.45em] text-[#8A7247] text-sm">
             Meet Your Planner
           </p>
 
@@ -24,7 +52,7 @@ export default function PlannerPage() {
             Hi, I'm Kajal.
           </h1>
 
-          <p className="mt-4 text-[#C8B48A] uppercase tracking-[0.3em] text-sm">
+          <p className="mt-4 text-[#8A7247] uppercase tracking-[0.3em] text-sm">
             Founder of Halo & Pine
           </p>
 
@@ -53,7 +81,7 @@ export default function PlannerPage() {
             <p className="pt-6 font-serif text-2xl">
               God bless,
               <br />
-              <span className="text-4xl text-[#C8B48A]">
+              <span className="text-4xl text-[#8A7247]">
                 Kajal
               </span>
             </p>
