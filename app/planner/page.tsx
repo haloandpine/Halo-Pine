@@ -1,35 +1,69 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Meet Your Planner | Halo & Pine",
+  title: "Meet Your Wedding Planner",
   description:
-    "Meet your wedding planner and learn about the calm, thoughtful approach behind Halo & Pine wedding coordination.",
+    "Meet Kajal, the planner behind Halo & Pine, and learn how calm leadership and precise coordination shape your wedding day.",
+  alternates: {
+    canonical: "/planner",
+  },
+  keywords: [
+    "meet your wedding planner",
+    "Kajal Halo and Pine",
+    "Vancouver wedding coordinator",
+    "Lower Mainland wedding planning",
+  ],
   openGraph: {
-    title: "Meet Your Planner | Halo & Pine",
+    url: "https://www.haloandpine.ca/planner",
+    title: "Meet Your Wedding Planner | Halo & Pine",
     description:
-      "Meet your wedding planner and learn about the calm, thoughtful approach behind Halo & Pine wedding coordination.",
+      "Meet Kajal and discover the calm, detail-focused planning approach behind Halo & Pine.",
     images: [
       {
-        url: "/logo.PNG",
+        url: "/kajal.jpg",
         width: 1200,
         height: 630,
-        alt: "Halo & Pine",
+        alt: "Kajal, founder and planner at Halo and Pine",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet Your Planner | Halo & Pine",
+    title: "Meet Your Wedding Planner | Halo & Pine",
     description:
-      "Meet your wedding planner and learn about the calm, thoughtful approach behind Halo & Pine wedding coordination.",
-    images: ["/logo.PNG"],
+      "Get to know Kajal, the planner behind Halo & Pine wedding coordination.",
+    images: ["/kajal.jpg"],
   },
 };
 
 export default function PlannerPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.haloandpine.ca/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Meet Your Planner",
+        item: "https://www.haloandpine.ca/planner",
+      },
+    ],
+  };
+
   return (
     <main className="bg-[#F8F4EF] min-h-screen py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       <div className="max-w-[1500px] mx-auto px-12 grid md:grid-cols-2 gap-28 items-start">
 
@@ -76,6 +110,10 @@ export default function PlannerPage() {
 
             <p>
               It would be an honour to play a small part in the beginning of your next chapter.
+            </p>
+
+            <p>
+              You can view our <Link href="/services" className="underline underline-offset-4">service packages</Link>, read our <Link href="/faq" className="underline underline-offset-4">wedding FAQ</Link>, or <Link href="/contact" className="underline underline-offset-4">reach out here</Link> to begin.
             </p>
 
             <p className="pt-6 font-serif text-2xl">

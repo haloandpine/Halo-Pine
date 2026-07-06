@@ -67,6 +67,10 @@ export default function AboutContent() {
               <p>
                 Based in Port Coquitlam, BC, I serve couples across the Lower Mainland who value refinement, warmth, and a seamless guest experience.
               </p>
+
+              <p>
+                If you are comparing options, you can explore our <Link href="/services" className="underline underline-offset-4">wedding coordination services</Link>, review <Link href="/faq" className="underline underline-offset-4">frequently asked questions</Link>, or <Link href="/contact" className="underline underline-offset-4">get in touch</Link> to discuss your day.
+              </p>
             </div>
 
             <Link

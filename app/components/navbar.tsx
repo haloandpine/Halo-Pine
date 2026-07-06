@@ -60,6 +60,13 @@ export default function Navbar() {
             Meet Your Planner
           </Link>
           <Link
+            href="/faq"
+            aria-current={pathname === "/faq" ? "page" : undefined}
+            className="rounded-full px-2 py-1 transition hover:opacity-70"
+          >
+            FAQ
+          </Link>
+          <Link
             href="/contact"
             aria-current={pathname === "/contact" ? "page" : undefined}
             className="rounded-full bg-[#C8B48A] px-4 py-2 text-black transition hover:bg-[#b79f72]"

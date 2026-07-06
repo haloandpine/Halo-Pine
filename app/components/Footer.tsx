@@ -1,8 +1,19 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="min-h-[90px] border-t border-[#D8B46A] bg-[#171717] text-white">
       <div className="mx-auto flex h-full w-full max-w-7xl flex-col gap-4 px-6 py-6 text-xs md:flex-row md:items-center md:justify-between md:px-10 lg:px-14">
         <p className="font-serif text-sm">Halo &amp; Pine</p>
+
+        <nav aria-label="Footer" className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/80">
+          <Link href="/" className="hover:text-[#D8B46A]">Home</Link>
+          <Link href="/about" className="hover:text-[#D8B46A]">About</Link>
+          <Link href="/services" className="hover:text-[#D8B46A]">Services</Link>
+          <Link href="/planner" className="hover:text-[#D8B46A]">Planner</Link>
+          <Link href="/faq" className="hover:text-[#D8B46A]">FAQ</Link>
+          <Link href="/contact" className="hover:text-[#D8B46A]">Contact</Link>
+        </nav>
 
         <p className="text-white/75">© 2026 Halo &amp; Pine. All rights reserved.</p>
 

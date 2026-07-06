@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
@@ -201,6 +202,9 @@ export default function ContactContent() {
               <p className="text-2xl font-serif text-[#2B2B2B]">Reach Out</p>
               <p className="mt-3 text-[16px] leading-7 text-[#4A4A4A]">
                 Share a few details and we will guide you through the next steps with calm, thoughtful coordination.
+              </p>
+              <p className="mt-4 text-[15px] leading-7 text-[#4A4A4A]">
+                New here? Start with our <Link href="/services" className="underline underline-offset-4">service packages</Link>, or browse our <Link href="/faq" className="underline underline-offset-4">wedding FAQ</Link>.
               </p>
             </div>
           </div>

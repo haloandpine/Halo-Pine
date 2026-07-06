@@ -28,11 +28,11 @@ export default function Hero() {
           />
 
           <div className="flex flex-col items-center gap-4">
-            <p className="text-white text-3xl md:text-5xl font-serif leading-tight">
+            <h1 className="text-white text-3xl md:text-5xl font-serif leading-tight">
               Creating calm for
               <br />
               your most meaningful day.
-            </p>
+            </h1>
 
             <p className="uppercase tracking-[0.45em] text-[#E7D8B2] text-lg">
               Wedding Coordination
@@ -45,6 +45,18 @@ export default function Hero() {
             >
               Book Consultation
             </Link>
+
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
+              <Link href="/services" className="underline underline-offset-4 hover:text-[#E7D8B2]">
+                Explore Services
+              </Link>
+              <Link href="/about" className="underline underline-offset-4 hover:text-[#E7D8B2]">
+                Meet Your Planner
+              </Link>
+              <Link href="/faq" className="underline underline-offset-4 hover:text-[#E7D8B2]">
+                Wedding FAQs
+              </Link>
+            </div>
           </div>
         </div>
       </div>

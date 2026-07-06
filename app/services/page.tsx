@@ -1,20 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Wedding Coordination Services | Halo & Pine",
+  title: "Wedding Coordination Services",
   description:
-    "Explore our wedding coordination packages, including Day-of Coordination, Month-of Coordination, and Intimate Weddings.",
+    "Explore Halo & Pine wedding coordination packages for day-of, month-of, and intimate weddings in Vancouver and the Lower Mainland.",
+  alternates: {
+    canonical: "/services",
+  },
+  keywords: [
+    "wedding coordination packages",
+    "day-of coordination Vancouver",
+    "month-of coordination",
+    "micro wedding coordinator",
+    "wedding planner services BC",
+  ],
   openGraph: {
+    url: "https://www.haloandpine.ca/services",
     title: "Wedding Coordination Services | Halo & Pine",
     description:
-      "Explore our wedding coordination packages, including Day-of Coordination, Month-of Coordination, and Intimate Weddings.",
+      "Compare Halo & Pine wedding coordination packages for smooth, beautifully managed wedding days.",
     images: [
       {
-        url: "/logo.PNG",
+        url: "/services-hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Halo and Pine logo",
+        alt: "Wedding coordination service styling by Halo and Pine",
       },
     ],
   },
@@ -22,8 +34,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wedding Coordination Services | Halo & Pine",
     description:
-      "Explore our wedding coordination packages, including Day-of Coordination, Month-of Coordination, and Intimate Weddings.",
-    images: ["/logo.PNG"],
+      "View day-of, month-of, and intimate wedding coordination packages by Halo & Pine.",
+    images: ["/services-hero.jpg"],
   },
 };
 
@@ -110,8 +122,57 @@ const createMailto = (packageName: string) => {
 };
 
 export default function ServicesPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.haloandpine.ca/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://www.haloandpine.ca/services",
+      },
+    ],
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: packages.map((pkg, index) => ({
+      "@type": "Service",
+      position: index + 1,
+      name: `${pkg.name} - ${pkg.subtitle}`,
+      description: pkg.intro,
+      provider: {
+        "@type": "Organization",
+        name: "Halo & Pine",
+      },
+      areaServed: "Vancouver and Lower Mainland, BC",
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "CAD",
+        priceSpecification: pkg.priceLabel,
+      },
+      url: "https://www.haloandpine.ca/services",
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F4EF] pb-24 pt-32 md:pt-36">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <section className="mx-auto max-w-[1200px] px-6 md:px-10">
         <div className="mb-12 md:mb-16">
           <p className="text-sm uppercase tracking-[0.35em] text-[#8A7247]">Services</p>
@@ -182,6 +243,13 @@ export default function ServicesPage() {
             );
           })}
         </div>
+
+        <section className="mt-16 border-t border-[#D8CCB5] pt-10 text-[#3F3F3F]">
+          <h2 className="font-serif text-3xl text-[#2B2B2B] md:text-4xl">Planning Your Next Step</h2>
+          <p className="mt-4 max-w-3xl text-[17px] leading-8">
+            Learn more about our approach on the <Link href="/about" className="underline underline-offset-4">About page</Link>, review common questions in our <Link href="/faq" className="underline underline-offset-4">Wedding FAQ</Link>, or <Link href="/contact" className="underline underline-offset-4">contact us</Link> to check availability.
+          </p>
+        </section>
       </section>
     </main>
   );

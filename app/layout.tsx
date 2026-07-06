@@ -4,6 +4,83 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 
+const siteUrl = "https://www.haloandpine.ca";
+
+const baseSchemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Halo & Pine",
+      url: siteUrl,
+      logo: `${siteUrl}/logo.PNG`,
+      sameAs: ["https://www.instagram.com"],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+1-604-442-6406",
+          contactType: "customer service",
+          areaServed: "CA",
+          availableLanguage: ["English"],
+        },
+      ],
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#localbusiness`,
+      name: "Halo & Pine",
+      image: `${siteUrl}/hero.PNG`,
+      url: siteUrl,
+      telephone: "+1-604-442-6406",
+      email: "info@haloandpine.ca",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Port Coquitlam",
+        addressRegion: "BC",
+        addressCountry: "CA",
+      },
+      areaServed: [
+        {
+          "@type": "Place",
+          name: "Vancouver",
+        },
+        {
+          "@type": "Place",
+          name: "Lower Mainland",
+        },
+      ],
+      priceRange: "$$",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+          ],
+          opens: "09:00",
+          closes: "18:00",
+        },
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Halo & Pine",
+      url: siteUrl,
+      inLanguage: "en-CA",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${siteUrl}/services`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
+};
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,37 +92,63 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://haloandpine.ca"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Halo & Pine Wedding Coordination",
     template: "%s | Halo & Pine",
   },
-  description: "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+  description:
+    "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+  applicationName: "Halo & Pine",
+  keywords: [
+    "wedding coordinator Vancouver",
+    "day of coordination Vancouver",
+    "month of coordination BC",
+    "wedding planning Port Coquitlam",
+    "Halo and Pine",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/logo.PNG",
     shortcut: "/logo.PNG",
     apple: "/logo.PNG",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_CA",
     siteName: "Halo & Pine",
-    title: "Halo & Pine Wedding Coordination | Wedding Coordinator in Vancouver",
-    description: "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+    url: siteUrl,
+    title: "Halo & Pine Wedding Coordination",
+    description:
+      "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
     images: [
       {
-        url: "/logo.PNG",
+        url: "/hero.PNG",
         width: 1200,
         height: 630,
-        alt: "Halo & Pine",
+        alt: "Halo and Pine wedding coordination brand image",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Halo & Pine Wedding Coordination | Wedding Coordinator in Vancouver",
-    description: "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
-    images: ["/logo.PNG"],
+    title: "Halo & Pine Wedding Coordination",
+    description:
+      "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+    images: ["/hero.PNG"],
   },
 };
 
@@ -63,6 +166,10 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(baseSchemaGraph) }}
+        />
         <Navbar />
         <div id="main-content" tabIndex={-1} className="flex-1 page-transition">
           {children}
