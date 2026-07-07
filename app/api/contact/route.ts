@@ -4,12 +4,24 @@ import { Resend } from "resend";
 const resendApiKey = process.env.RESEND_API_KEY;
 
 const SERVICE_OPTIONS = [
-  "Day-of Coordination (The Essential)",
-  "Month-of Coordination (The Signature)",
-  "I'm not sure yet",
+  "The Intimate — Elopements & Micro Weddings",
+  "The Essential — Day-of Coordination",
+  "The Signature — Month-of Coordination",
 ] as const;
 
 type ServiceOption = (typeof SERVICE_OPTIONS)[number];
+
+const REFERRAL_OPTIONS = [
+  "Google Search",
+  "Instagram",
+  "Facebook",
+  "WeddingWire",
+  "Referral",
+  "Friend or Family",
+  "Other",
+] as const;
+
+type ReferralOption = (typeof REFERRAL_OPTIONS)[number];
 
 type ContactPayload = {
   fullName?: string;
@@ -18,7 +30,7 @@ type ContactPayload = {
   weddingDate?: string;
   venue?: string;
   serviceInterestedIn?: string;
-  guestCount?: string;
+  referralSource?: string;
   message?: string;
 };
 
@@ -42,10 +54,10 @@ export async function POST(request: Request) {
   const weddingDate = clean(body.weddingDate);
   const venue = clean(body.venue);
   const serviceInterestedIn = clean(body.serviceInterestedIn);
-  const guestCount = clean(body.guestCount);
+  const referralSource = clean(body.referralSource);
   const message = clean(body.message);
 
-  if (!fullName || !email || !weddingDate || !serviceInterestedIn || !message) {
+  if (!fullName || !email || !weddingDate || !serviceInterestedIn || !referralSource || !message) {
     return NextResponse.json(
       { message: "Please complete all required fields." },
       { status: 400 }
@@ -60,16 +72,16 @@ export async function POST(request: Request) {
     );
   }
 
-  if (guestCount && !/^\d+$/.test(guestCount)) {
+  if (!SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption)) {
     return NextResponse.json(
-      { message: "Guest count must be a whole number." },
+      { message: "Please select a valid service option." },
       { status: 400 }
     );
   }
 
-  if (!SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption)) {
+  if (!REFERRAL_OPTIONS.includes(referralSource as ReferralOption)) {
     return NextResponse.json(
-      { message: "Please select a valid service option." },
+      { message: "Please select a valid referral option." },
       { status: 400 }
     );
   }
@@ -91,7 +103,7 @@ export async function POST(request: Request) {
     `Wedding Date: ${weddingDate || "Not provided"}`,
     `Venue: ${venue || "Not provided"}`,
     `Service Interested In: ${serviceInterestedIn}`,
-    `Guest Count: ${guestCount || "Not provided"}`,
+    `How did you hear about us?: ${referralSource}`,
     "",
     "Wedding Details:",
     message,

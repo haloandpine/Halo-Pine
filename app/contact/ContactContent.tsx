@@ -119,11 +119,11 @@ export default function ContactContent() {
       weddingDate: String(formData.get("weddingDate") ?? "").trim(),
       venue: String(formData.get("venue") ?? "").trim(),
       serviceInterestedIn: String(formData.get("serviceInterestedIn") ?? "").trim(),
-      guestCount: String(formData.get("guestCount") ?? "").trim(),
+      referralSource: String(formData.get("referralSource") ?? "").trim(),
       message: String(formData.get("message") ?? "").trim(),
     };
 
-    if (!payload.fullName || !payload.email || !payload.weddingDate || !payload.serviceInterestedIn || !payload.message) {
+    if (!payload.fullName || !payload.email || !payload.weddingDate || !payload.serviceInterestedIn || !payload.referralSource || !payload.message) {
       setSubmitError("Please complete all required fields.");
       return;
     }
@@ -361,22 +361,31 @@ export default function ContactContent() {
                       className={controlClassName}
                     >
                       <option value="" disabled>Select a service</option>
-                      <option value="Day-of Coordination (The Essential)">Day-of Coordination (The Essential)</option>
-                      <option value="Month-of Coordination (The Signature)">Month-of Coordination (The Signature)</option>
-                      <option value="I'm not sure yet">I&apos;m not sure yet</option>
+                      <option value="The Intimate — Elopements & Micro Weddings">The Intimate — Elopements & Micro Weddings</option>
+                      <option value="The Essential — Day-of Coordination">The Essential — Day-of Coordination</option>
+                      <option value="The Signature — Month-of Coordination">The Signature — Month-of Coordination</option>
                     </select>
                   </label>
 
-                  <label htmlFor="contact-guest-count" className="block md:col-span-2">
-                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Guest Count</span>
-                    <input
-                      id="contact-guest-count"
-                      name="guestCount"
-                      type="number"
-                      min={1}
-                      inputMode="numeric"
+                  <label htmlFor="contact-referral" className="block md:col-span-2">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">How did you hear about us? *</span>
+                    <select
+                      id="contact-referral"
+                      name="referralSource"
+                      required
+                      defaultValue=""
+                      aria-required="true"
                       className={controlClassName}
-                    />
+                    >
+                      <option value="" disabled>Select an option</option>
+                      <option value="Google Search">Google Search</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="WeddingWire">WeddingWire</option>
+                      <option value="Referral">Referral</option>
+                      <option value="Friend or Family">Friend or Family</option>
+                      <option value="Other">Other</option>
+                    </select>
                   </label>
 
                   <label htmlFor="contact-message" className="block md:col-span-2">
