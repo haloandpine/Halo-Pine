@@ -81,7 +81,7 @@ export default function PlannerPage() {
   };
 
   return (
-    <main className="bg-[#F8F4EF] min-h-screen py-16 md:py-24">
+    <main className="bg-white min-h-screen py-16 md:py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

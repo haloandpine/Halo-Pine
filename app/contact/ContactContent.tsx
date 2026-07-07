@@ -162,7 +162,7 @@ export default function ContactContent() {
   };
 
   return (
-    <main ref={mainRef} className="min-h-screen bg-[#F8F4EF] pb-24">
+    <main ref={mainRef} className="min-h-screen bg-white pb-24">
       <section data-reveal className="relative h-[300px] overflow-hidden">
         <Image
           src="/services-hero.jpg"

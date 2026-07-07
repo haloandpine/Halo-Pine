@@ -126,7 +126,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F4EF] pb-24 pt-32 md:pt-36">
+    <main className="min-h-screen bg-white pb-24 pt-32 md:pt-36">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

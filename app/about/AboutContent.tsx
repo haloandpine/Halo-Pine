@@ -28,7 +28,7 @@ export default function AboutContent() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#F8F4EF] px-5 py-14 md:px-10 md:py-20">
+    <main className="min-h-screen bg-white px-5 py-14 md:px-10 md:py-20">
       <section
         ref={sectionRef}
         className={`mx-auto max-w-[1200px] transition-all duration-700 ease-out ${

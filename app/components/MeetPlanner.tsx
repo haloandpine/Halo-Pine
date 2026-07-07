@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function MeetPlanner() {
   return (
-    <section className="bg-[#F8F4EF] py-28">
+    <section className="bg-white py-28">
       <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
 
         <Image
