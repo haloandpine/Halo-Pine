@@ -38,9 +38,9 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
   return (
     <>
       <section className="mx-auto max-w-[1200px] px-6 md:px-10">
-        <div className="mb-10 md:mb-12">
+        <div className="mb-9 text-center md:mb-10">
           <p className="text-sm uppercase tracking-[0.35em] text-[#8A7247]">Services</p>
-          <h1 className="mt-3 max-w-3xl font-serif text-3xl leading-tight text-[#2B2B2B] md:text-5xl">
+          <h1 className="mx-auto mt-4 max-w-[26ch] font-serif text-[2rem] leading-tight text-[#2B2B2B] md:text-4xl">
             Thoughtful wedding coordination designed to feel polished, seamless, and deeply personal.
           </h1>
         </div>
@@ -51,41 +51,23 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
               key={servicePackage.id}
               className="flex h-full flex-col rounded-[26px] border border-[#E8DFCF] bg-white p-7 shadow-[0_18px_34px_rgba(31,31,31,0.08)] md:p-8"
             >
-              <h2 className="font-serif text-[34px] leading-tight text-[#2B2B2B]">
+              <h2 className="font-serif text-[32px] leading-tight text-[#2B2B2B]">
                 {servicePackage.title}
               </h2>
-              <p className="mt-3 text-sm uppercase tracking-[0.18em] text-[#8A7247]">
-                {servicePackage.subtitle}
+              <p className="mt-5 overflow-hidden text-[16px] leading-7 text-[#3F3F3F] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+                {servicePackage.shortDescription}
               </p>
-              <p className="mt-6 text-xl font-semibold text-[#2B2B2B]">{servicePackage.priceLabel}</p>
-              <p className="mt-5 text-[16px] leading-7 text-[#3F3F3F]">{servicePackage.shortDescription}</p>
-
-              <ul className="mt-6 space-y-3 text-[#3F3F3F]" aria-label={`${servicePackage.title} features`}>
-                {servicePackage.includes.slice(0, 6).map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 leading-7">
-                    <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#8A7247]" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
 
               <button
                 type="button"
                 onClick={() => setSelectedPackageId(servicePackage.id)}
-                className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.28em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                className="mt-9 inline-flex w-fit items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.28em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
               >
                 Let&apos;s Connect
               </button>
             </article>
           ))}
         </div>
-
-        <section className="mt-16 border-t border-[#D8CCB5] pt-10 text-[#3F3F3F]">
-          <h2 className="font-serif text-3xl text-[#2B2B2B] md:text-4xl">Planning Your Next Step</h2>
-          <p className="mt-4 max-w-3xl text-[17px] leading-8">
-            Learn more about our approach on the <Link href="/about" className="underline underline-offset-4">About page</Link>, explore package details above, or <Link href="/contact" className="underline underline-offset-4">contact us</Link> to check availability.
-          </p>
-        </section>
       </section>
 
       <div
@@ -116,7 +98,7 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
               </h3>
               <p className="mt-5 text-xl font-semibold text-[#2B2B2B]">{selectedPackage.priceLabel}</p>
               <p id="service-modal-description" className="mt-5 text-[17px] leading-8 text-[#3F3F3F]">
-                {selectedPackage.shortDescription}
+                {selectedPackage.fullDescription}
               </p>
 
               <div className="mt-7">

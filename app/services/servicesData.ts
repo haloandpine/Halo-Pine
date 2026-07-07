@@ -1,9 +1,9 @@
 export type ServicePackage = {
   id: string;
   title: string;
-  subtitle: string;
   priceLabel: string;
   shortDescription: string;
+  fullDescription: string;
   includes: string[];
 };
 
@@ -11,10 +11,11 @@ export const packages: ServicePackage[] = [
   {
     id: "intimate",
     title: "The Intimate — Elopements & Micro Weddings",
-    subtitle: "Intimate celebrations with intentional coordination",
     priceLabel: "Starting at $795",
     shortDescription:
       "Designed for celebrations with up to 40 guests and a refined, stress-free experience.",
+    fullDescription:
+      "An elevated coordination experience for intimate ceremonies, elopements, and micro weddings where every detail still deserves graceful, professional oversight.",
     includes: [
       "Planning consultation",
       "Vendor coordination",
@@ -26,10 +27,11 @@ export const packages: ServicePackage[] = [
   {
     id: "essential",
     title: "The Essential — Day-of Coordination",
-    subtitle: "Polished execution for a seamless wedding day",
     priceLabel: "Starting at $1,295",
     shortDescription:
       "Perfect for couples who have planned their wedding and want a calm professional lead on the day.",
+    fullDescription:
+      "A polished day-of coordination package for couples who have completed planning and want a trusted expert to orchestrate logistics, vendors, and timing with confidence.",
     includes: [
       "Complimentary consultation",
       "Wedding day timeline review",
@@ -45,10 +47,11 @@ export const packages: ServicePackage[] = [
   {
     id: "signature",
     title: "The Signature — Month-of Coordination",
-    subtitle: "Comprehensive final-month guidance and oversight",
     priceLabel: "Starting at $1,995",
     shortDescription:
       "For couples who have done the planning and want experienced leadership in the final stretch.",
+    fullDescription:
+      "Comprehensive month-of coordination with structured handoff, detailed timeline planning, and professional management in the final weeks leading into your celebration.",
     includes: [
       "Everything in The Essential",
       "Begins approximately 4–6 weeks before the wedding",
