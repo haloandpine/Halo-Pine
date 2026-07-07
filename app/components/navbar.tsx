@@ -7,12 +7,9 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const isHome = pathname === "/";
   const isAbout = pathname === "/about";
   const isContact = pathname === "/contact";
-  const isServices = pathname === "/services";
   const scrollThreshold = isAbout ? 80 : isContact ? 80 : 100;
-  const isTransparent = (isHome || isAbout || isContact) && !scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +24,10 @@ export default function Navbar() {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out ${isTransparent ? "bg-transparent py-[18px] md:py-[26px]" : "bg-white/90 py-[14px] md:py-[22px] shadow-[0_10px_30px_-20px_rgba(0,0,0,0.25)] border-b border-slate-200/40 backdrop-blur-xl"}`}
+      className={`fixed top-0 left-0 z-50 w-full bg-[#F8F4EF] transition-all duration-500 ease-out ${scrolled ? "shadow-[0_10px_30px_-20px_rgba(0,0,0,0.22)] border-b border-black/5" : "shadow-none border-b border-transparent"} py-[14px] md:py-[22px]`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-center px-3 sm:px-6 md:justify-end md:px-8">
-        <div className={`no-scrollbar flex w-full flex-nowrap items-center justify-start gap-2 overflow-x-auto whitespace-nowrap text-[11px] uppercase tracking-[0.2em] sm:gap-6 sm:text-xs md:w-auto md:justify-center md:gap-8 md:text-sm md:tracking-widest transition-colors duration-500 ${isContact && isTransparent ? "text-white" : "text-[#222222]"}`}>
+        <div className="no-scrollbar flex w-full flex-nowrap items-center justify-start gap-2 overflow-x-auto whitespace-nowrap text-[11px] uppercase tracking-[0.2em] text-[#222222] transition-colors duration-500 sm:gap-6 sm:text-xs md:w-auto md:justify-center md:gap-8 md:text-sm md:tracking-widest">
           <Link
             href="/"
             aria-current={pathname === "/" ? "page" : undefined}
