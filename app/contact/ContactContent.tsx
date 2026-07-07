@@ -16,6 +16,7 @@ export default function ContactContent() {
   const calendarContainerRef = useRef<HTMLDivElement | null>(null);
   const firstInputRef = useRef<HTMLInputElement | null>(null);
   const successHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const submitErrorRef = useRef<HTMLParagraphElement | null>(null);
 
   const formatDateValue = (date: Date) => {
     const year = date.getFullYear();
@@ -86,6 +87,12 @@ export default function ContactContent() {
     }
   }, [isFormOpen, isSubmitted]);
 
+  useEffect(() => {
+    if (submitError) {
+      submitErrorRef.current?.focus();
+    }
+  }, [submitError]);
+
   const handleShowFormAgain = () => {
     setIsSubmitted(false);
     setSubmitError(null);
@@ -107,11 +114,13 @@ export default function ContactContent() {
       email: String(formData.get("email") ?? "").trim(),
       phoneNumber: String(formData.get("phoneNumber") ?? "").trim(),
       weddingDate: String(formData.get("weddingDate") ?? "").trim(),
-      referralSource: String(formData.get("referralSource") ?? "").trim(),
+      venue: String(formData.get("venue") ?? "").trim(),
+      serviceInterestedIn: String(formData.get("serviceInterestedIn") ?? "").trim(),
+      guestCount: String(formData.get("guestCount") ?? "").trim(),
       message: String(formData.get("message") ?? "").trim(),
     };
 
-    if (!payload.fullName || !payload.email || !payload.weddingDate || !payload.message) {
+    if (!payload.fullName || !payload.email || !payload.weddingDate || !payload.serviceInterestedIn || !payload.message) {
       setSubmitError("Please complete all required fields.");
       return;
     }
@@ -215,10 +224,13 @@ export default function ContactContent() {
           >
             <div className="rounded-[24px] border border-[#E8DFCF] bg-white p-6 shadow-[0_18px_35px_rgba(31,31,31,0.08)] md:p-8">
               {isSubmitted ? (
-                <div className="py-8 text-center" role="status" aria-live="polite">
+                <div className="py-8 text-center" role="status" aria-live="assertive">
                   <h2 ref={successHeadingRef} tabIndex={-1} className="text-4xl font-serif text-[#2B2B2B]">Thank you!</h2>
                   <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-[#4A4A4A]">
                     We&apos;ve received your inquiry and will get back to you within 24–48 hours.
+                  </p>
+                  <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-7 text-[#6E6046]">
+                    Your message was sent successfully.
                   </p>
                   <button
                     type="button"
@@ -230,43 +242,68 @@ export default function ContactContent() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
-                  <label className="block">
-                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Full Name *</span>
-                    <input ref={firstInputRef} name="fullName" required autoComplete="name" className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-2.5 text-[#2B2B2B] outline-none transition focus:border-[#8A7247]" />
+                <form onSubmit={handleSubmit} noValidate className="grid gap-5 md:grid-cols-2">
+                  <label htmlFor="contact-name" className="block">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Name *</span>
+                    <input
+                      id="contact-name"
+                      ref={firstInputRef}
+                      name="fullName"
+                      required
+                      autoComplete="name"
+                      aria-required="true"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                    />
                   </label>
 
-                  <label className="block">
+                  <label htmlFor="contact-email" className="block">
                     <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Email *</span>
-                    <input name="email" type="email" required autoComplete="email" className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-2.5 text-[#2B2B2B] outline-none transition focus:border-[#8A7247]" />
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      inputMode="email"
+                      aria-required="true"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                    />
                   </label>
 
-                  <label className="block">
-                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Phone Number</span>
-                    <input name="phoneNumber" autoComplete="tel" className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-2.5 text-[#2B2B2B] outline-none transition focus:border-[#8A7247]" />
+                  <label htmlFor="contact-phone" className="block">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Phone</span>
+                    <input
+                      id="contact-phone"
+                      name="phoneNumber"
+                      type="tel"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                    />
                   </label>
 
-                  <label className="block">
+                  <label htmlFor="wedding-date-button" className="block">
                     <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Wedding Date *</span>
                     <div ref={calendarContainerRef} className="relative">
                       <button
+                        id="wedding-date-button"
                         type="button"
                         onClick={() => setIsCalendarOpen((previous) => !previous)}
                         aria-label={selectedWeddingDate ? `Wedding date, ${formatDateLabel(selectedWeddingDate)}` : "Choose your wedding date"}
                         aria-expanded={isCalendarOpen}
                         aria-controls="wedding-date-calendar"
                         aria-haspopup="dialog"
-                        className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-left text-[#2B2B2B] outline-none transition focus:border-[#8A7247]"
+                        className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-left text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
                       >
                         {formatDateLabel(selectedWeddingDate)}
                       </button>
-                      <input type="hidden" name="weddingDate" value={selectedWeddingDate} />
+                      <input type="hidden" name="weddingDate" value={selectedWeddingDate} required />
 
                       <div
                         id="wedding-date-calendar"
                         role="dialog"
                         aria-label="Wedding date calendar"
-                        className={`absolute left-0 z-30 mt-3 w-[82%] min-w-[260px] max-w-[320px] rounded-[18px] border border-[#E8D8B7] bg-[#FFF9F1] p-5 shadow-[0_14px_34px_rgba(31,31,31,0.12)] transition-all duration-300 ease-out ${
+                        className={`absolute left-0 z-30 mt-3 w-full min-w-[260px] max-w-[340px] rounded-[18px] border border-[#E8D8B7] bg-[#FFF9F1] p-5 shadow-[0_14px_34px_rgba(31,31,31,0.12)] transition-all duration-300 ease-out ${
                           isCalendarOpen
                             ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
                             : "pointer-events-none -translate-y-2 scale-95 opacity-0"
@@ -300,30 +337,59 @@ export default function ContactContent() {
                     </div>
                   </label>
 
-                  <label className="block md:col-span-2">
-                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">How did you hear about us?</span>
+                  <label htmlFor="contact-venue" className="block">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Venue</span>
+                    <input
+                      id="contact-venue"
+                      name="venue"
+                      autoComplete="organization"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                    />
+                  </label>
+
+                  <label htmlFor="contact-service" className="block">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Service Interested In *</span>
                     <select
-                      name="referralSource"
+                      id="contact-service"
+                      name="serviceInterestedIn"
+                      required
                       defaultValue=""
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-2.5 text-[#2B2B2B] outline-none transition focus:border-[#8A7247]"
+                      aria-required="true"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
                     >
-                      <option value="" disabled>Select an option</option>
-                      <option value="Google">Google</option>
-                      <option value="Facebook">Facebook</option>
-                      <option value="Friend / Referral">Friend / Referral</option>
-                      <option value="Wedding Venue">Wedding Venue</option>
-                      <option value="Wedding Show">Wedding Show</option>
-                      <option value="Other">Other</option>
+                      <option value="" disabled>Select a service</option>
+                      <option value="Day-of Coordination (The Essential)">Day-of Coordination (The Essential)</option>
+                      <option value="Month-of Coordination (The Signature)">Month-of Coordination (The Signature)</option>
+                      <option value="I'm not sure yet">I&apos;m not sure yet</option>
                     </select>
                   </label>
 
-                  <label className="block md:col-span-2">
-                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Tell us about your wedding... *</span>
-                    <textarea name="message" rows={6} required className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-2.5 text-[#2B2B2B] outline-none transition focus:border-[#8A7247]" />
+                  <label htmlFor="contact-guest-count" className="block md:col-start-2">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Guest Count</span>
+                    <input
+                      id="contact-guest-count"
+                      name="guestCount"
+                      type="number"
+                      min={1}
+                      inputMode="numeric"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                    />
+                  </label>
+
+                  <label htmlFor="contact-message" className="block md:col-span-2">
+                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Message *</span>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows={6}
+                      required
+                      aria-required="true"
+                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                    />
                   </label>
 
                   {submitError ? (
-                    <p className="md:col-span-2 text-sm text-[#8C3A3A]" role="alert">
+                    <p ref={submitErrorRef} tabIndex={-1} className="md:col-span-2 rounded-lg border border-[#E7CACA] bg-[#FFF4F4] px-3 py-2 text-sm text-[#8C3A3A]" role="alert" aria-live="assertive">
                       {submitError}
                     </p>
                   ) : null}
@@ -333,7 +399,7 @@ export default function ContactContent() {
                       type="submit"
                       disabled={isSubmitting}
                       aria-label={isSubmitting ? "Sending your message" : "Send your message"}
-                      className="inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                      className="inline-flex w-full items-center justify-center rounded-full border border-[#B79F72] bg-[#C8B48A] px-10 py-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#1F1F1F] shadow-[0_10px_20px_rgba(183,159,114,0.28)] transition duration-300 hover:bg-[#b79f72] disabled:cursor-not-allowed disabled:opacity-70 md:w-auto"
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
                     </button>

@@ -45,18 +45,6 @@ export default function Hero() {
             >
               Book Consultation
             </Link>
-
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
-              <Link href="/services" className="underline underline-offset-4 hover:text-[#E7D8B2]">
-                Explore Services
-              </Link>
-              <Link href="/about" className="underline underline-offset-4 hover:text-[#E7D8B2]">
-                Meet Your Planner
-              </Link>
-              <Link href="/contact" className="underline underline-offset-4 hover:text-[#E7D8B2]">
-                Start Here
-              </Link>
-            </div>
           </div>
         </div>
       </div>

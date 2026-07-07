@@ -5,17 +5,20 @@ import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 
 const siteUrl = "https://www.haloandpine.ca";
+const apexSiteUrl = "https://haloandpine.ca";
+const organizationId = `${apexSiteUrl}/#organization`;
+const localBusinessId = `${apexSiteUrl}/#localbusiness`;
 
 const baseSchemaGraph = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": `${siteUrl}/#organization`,
+      "@id": organizationId,
       name: "Halo & Pine",
-      url: siteUrl,
+      url: apexSiteUrl,
+      email: "info@haloandpine.ca",
       logo: `${siteUrl}/logo.PNG`,
-      sameAs: ["https://www.instagram.com"],
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -28,26 +31,48 @@ const baseSchemaGraph = {
     },
     {
       "@type": "LocalBusiness",
-      "@id": `${siteUrl}/#localbusiness`,
+      "@id": localBusinessId,
       name: "Halo & Pine",
       image: `${siteUrl}/hero.PNG`,
-      url: siteUrl,
+      url: apexSiteUrl,
       telephone: "+1-604-442-6406",
       email: "info@haloandpine.ca",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Port Coquitlam",
-        addressRegion: "BC",
-        addressCountry: "CA",
+        addressRegion: "British Columbia",
+        addressCountry: "Canada",
       },
-      areaServed: [
+      serviceArea: [
         {
           "@type": "Place",
-          name: "Vancouver",
+          name: "Port Coquitlam, British Columbia, Canada",
         },
         {
           "@type": "Place",
-          name: "Lower Mainland",
+          name: "Greater Vancouver, British Columbia, Canada",
+        },
+        {
+          "@type": "Place",
+          name: "Lower Mainland, British Columbia, Canada",
+        },
+      ],
+      areaServed: [
+        {
+          "@type": "Place",
+          name: "Port Coquitlam, British Columbia, Canada",
+        },
+        {
+          "@type": "Place",
+          name: "Greater Vancouver, British Columbia, Canada",
+        },
+        {
+          "@type": "Place",
+          name: "Vancouver, British Columbia, Canada",
+        },
+        {
+          "@type": "Place",
+          name: "Lower Mainland, British Columbia, Canada",
         },
       ],
       priceRange: "$$",

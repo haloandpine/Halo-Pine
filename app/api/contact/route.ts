@@ -3,23 +3,22 @@ import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 
-const REFERRAL_SOURCES = [
-  "Google",
-  "Facebook",
-  "Friend / Referral",
-  "Wedding Venue",
-  "Wedding Show",
-  "Other",
+const SERVICE_OPTIONS = [
+  "Day-of Coordination (The Essential)",
+  "Month-of Coordination (The Signature)",
+  "I'm not sure yet",
 ] as const;
 
-type ReferralSource = (typeof REFERRAL_SOURCES)[number];
+type ServiceOption = (typeof SERVICE_OPTIONS)[number];
 
 type ContactPayload = {
   fullName?: string;
   email?: string;
   phoneNumber?: string;
   weddingDate?: string;
-  referralSource?: string;
+  venue?: string;
+  serviceInterestedIn?: string;
+  guestCount?: string;
   message?: string;
 };
 
@@ -41,10 +40,12 @@ export async function POST(request: Request) {
   const email = clean(body.email);
   const phoneNumber = clean(body.phoneNumber);
   const weddingDate = clean(body.weddingDate);
-  const referralSource = clean(body.referralSource);
+  const venue = clean(body.venue);
+  const serviceInterestedIn = clean(body.serviceInterestedIn);
+  const guestCount = clean(body.guestCount);
   const message = clean(body.message);
 
-  if (!fullName || !email || !weddingDate || !message) {
+  if (!fullName || !email || !weddingDate || !serviceInterestedIn || !message) {
     return NextResponse.json(
       { message: "Please complete all required fields." },
       { status: 400 }
@@ -59,9 +60,16 @@ export async function POST(request: Request) {
     );
   }
 
-  if (referralSource && !REFERRAL_SOURCES.includes(referralSource as ReferralSource)) {
+  if (guestCount && !/^\d+$/.test(guestCount)) {
     return NextResponse.json(
-      { message: "Please select a valid referral source." },
+      { message: "Guest count must be a whole number." },
+      { status: 400 }
+    );
+  }
+
+  if (!SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption)) {
+    return NextResponse.json(
+      { message: "Please select a valid service option." },
       { status: 400 }
     );
   }
@@ -81,7 +89,9 @@ export async function POST(request: Request) {
     `Email: ${email}`,
     `Phone: ${phoneNumber || "Not provided"}`,
     `Wedding Date: ${weddingDate || "Not provided"}`,
-    `How did you hear about us?: ${referralSource || "Not provided"}`,
+    `Venue: ${venue || "Not provided"}`,
+    `Service Interested In: ${serviceInterestedIn}`,
+    `Guest Count: ${guestCount || "Not provided"}`,
     "",
     "Wedding Details:",
     message,

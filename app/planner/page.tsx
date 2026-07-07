@@ -3,23 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Meet Your Wedding Planner",
+  title: "Meet Your Wedding Planner in Port Coquitlam",
   description:
-    "Meet Kajal, the planner behind Halo & Pine, and learn how calm leadership and precise coordination shape your wedding day.",
+    "Meet Kajal, the planner behind Halo & Pine in Port Coquitlam, British Columbia, and learn how calm leadership and precise coordination shape your wedding day.",
   alternates: {
     canonical: "/planner",
   },
   keywords: [
     "meet your wedding planner",
     "Kajal Halo and Pine",
-    "Vancouver wedding coordinator",
+    "Port Coquitlam wedding planner",
+    "Greater Vancouver wedding coordinator",
     "Lower Mainland wedding planning",
   ],
   openGraph: {
     url: "https://www.haloandpine.ca/planner",
-    title: "Meet Your Wedding Planner | Halo & Pine",
+    title: "Meet Your Wedding Planner in Port Coquitlam | Halo & Pine",
     description:
-      "Meet Kajal and discover the calm, detail-focused planning approach behind Halo & Pine.",
+      "Meet Kajal and discover the calm, detail-focused wedding planning approach behind Halo & Pine in Greater Vancouver.",
     images: [
       {
         url: "/kajal.jpg",
@@ -31,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meet Your Wedding Planner | Halo & Pine",
+    title: "Meet Your Wedding Planner in Port Coquitlam | Halo & Pine",
     description:
-      "Get to know Kajal, the planner behind Halo & Pine wedding coordination.",
+      "Get to know Kajal, the planner behind Halo & Pine wedding coordination in Greater Vancouver.",
     images: ["/kajal.jpg"],
   },
 };
@@ -58,11 +59,36 @@ export default function PlannerPage() {
     ],
   };
 
+  const plannerSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://haloandpine.ca/planner#kajal",
+    name: "Kajal",
+    jobTitle: "Wedding Planner",
+    worksFor: {
+      "@id": "https://haloandpine.ca/#organization",
+    },
+    url: "https://www.haloandpine.ca/planner",
+    image: "https://www.haloandpine.ca/kajal.jpg",
+    homeLocation: {
+      "@type": "Place",
+      name: "Port Coquitlam, British Columbia, Canada",
+    },
+    workLocation: {
+      "@type": "Place",
+      name: "Greater Vancouver, British Columbia, Canada",
+    },
+  };
+
   return (
     <main className="bg-[#F8F4EF] min-h-screen py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(plannerSchema) }}
       />
 
       <div className="max-w-[1500px] mx-auto px-12 grid md:grid-cols-2 gap-28 items-start">

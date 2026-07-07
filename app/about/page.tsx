@@ -2,23 +2,23 @@ import type { Metadata } from "next";
 import AboutContent from "./AboutContent";
 
 export const metadata: Metadata = {
-  title: "About Halo & Pine",
+  title: "About Halo & Pine | Port Coquitlam Wedding Coordination",
   description:
-    "Meet Kajal, founder of Halo & Pine, and discover the thoughtful, calm approach behind our wedding coordination services.",
+    "Meet Kajal, founder of Halo & Pine in Port Coquitlam, British Columbia, and discover the calm, detail-focused wedding coordination approach behind our services.",
   alternates: {
     canonical: "/about",
   },
   keywords: [
     "about Halo and Pine",
-    "wedding coordinator Port Coquitlam",
-    "Kajal wedding planner",
-    "BC wedding coordination",
+    "Port Coquitlam wedding coordinator",
+    "Greater Vancouver wedding planner",
+    "British Columbia wedding coordination",
   ],
   openGraph: {
     url: "https://www.haloandpine.ca/about",
-    title: "About Halo & Pine | Meet Kajal",
+    title: "About Halo & Pine | Port Coquitlam Wedding Coordination",
     description:
-      "Meet Kajal and learn how Halo & Pine delivers calm, polished wedding coordination in Vancouver and the Lower Mainland.",
+      "Meet Kajal and learn how Halo & Pine delivers calm, polished wedding coordination in Port Coquitlam, Greater Vancouver, and the Lower Mainland.",
     images: [
       {
         url: "/about.JPG",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Halo & Pine | Meet Kajal",
+    title: "About Halo & Pine | Port Coquitlam Wedding Coordination",
     description:
-      "Meet the planner behind Halo & Pine and discover the signature approach to wedding coordination.",
+      "Meet the planner behind Halo & Pine and discover the signature approach to wedding coordination in Greater Vancouver.",
     images: ["/about.JPG"],
   },
 };

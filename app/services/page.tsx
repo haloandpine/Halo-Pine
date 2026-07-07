@@ -3,24 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Wedding Coordination Services",
+  title: "Wedding Coordination Services in Greater Vancouver",
   description:
-    "Explore Halo & Pine wedding coordination packages for day-of, month-of, and intimate weddings in Vancouver and the Lower Mainland.",
+    "Explore Halo & Pine wedding coordination packages for day-of, month-of, and intimate weddings in Port Coquitlam, Greater Vancouver, and the Lower Mainland.",
   alternates: {
     canonical: "/services",
   },
   keywords: [
     "wedding coordination packages",
-    "day-of coordination Vancouver",
+    "day-of coordination Port Coquitlam",
+    "Greater Vancouver wedding coordination",
     "month-of coordination",
     "micro wedding coordinator",
-    "wedding planner services BC",
+    "wedding planner services British Columbia",
   ],
   openGraph: {
     url: "https://www.haloandpine.ca/services",
-    title: "Wedding Coordination Services | Halo & Pine",
+    title: "Wedding Coordination Services in Greater Vancouver | Halo & Pine",
     description:
-      "Compare Halo & Pine wedding coordination packages for smooth, beautifully managed wedding days.",
+      "Compare Halo & Pine wedding coordination packages for smooth, beautifully managed wedding days across Port Coquitlam and Greater Vancouver.",
     images: [
       {
         url: "/services-hero.jpg",
@@ -32,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wedding Coordination Services | Halo & Pine",
+    title: "Wedding Coordination Services in Greater Vancouver | Halo & Pine",
     description:
-      "View day-of, month-of, and intimate wedding coordination packages by Halo & Pine.",
+      "View day-of, month-of, and intimate wedding coordination packages by Halo & Pine in Port Coquitlam and Greater Vancouver.",
     images: ["/services-hero.jpg"],
   },
 };
@@ -151,9 +152,23 @@ export default function ServicesPage() {
       description: pkg.intro,
       provider: {
         "@type": "Organization",
+        "@id": "https://haloandpine.ca/#organization",
         name: "Halo & Pine",
       },
-      areaServed: "Vancouver and Lower Mainland, BC",
+      areaServed: [
+        {
+          "@type": "Place",
+          name: "Port Coquitlam, British Columbia, Canada",
+        },
+        {
+          "@type": "Place",
+          name: "Greater Vancouver, British Columbia, Canada",
+        },
+        {
+          "@type": "Place",
+          name: "Lower Mainland, British Columbia, Canada",
+        },
+      ],
       offers: {
         "@type": "Offer",
         priceCurrency: "CAD",
@@ -161,6 +176,35 @@ export default function ServicesPage() {
       },
       url: "https://www.haloandpine.ca/services",
     })),
+  };
+
+  const professionalServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://haloandpine.ca/#professionalservice",
+    name: "Halo & Pine",
+    serviceType: "Wedding Coordination",
+    url: "https://haloandpine.ca",
+    image: "https://www.haloandpine.ca/hero.PNG",
+    telephone: "+1-604-442-6406",
+    email: "info@haloandpine.ca",
+    areaServed: [
+      {
+        "@type": "Place",
+        name: "Port Coquitlam, British Columbia, Canada",
+      },
+      {
+        "@type": "Place",
+        name: "Greater Vancouver, British Columbia, Canada",
+      },
+      {
+        "@type": "Place",
+        name: "Lower Mainland, British Columbia, Canada",
+      },
+    ],
+    provider: {
+      "@id": "https://haloandpine.ca/#organization",
+    },
   };
 
   return (
@@ -172,6 +216,10 @@ export default function ServicesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
       />
       <section className="mx-auto max-w-[1200px] px-6 md:px-10">
         <div className="mb-12 md:mb-16">
