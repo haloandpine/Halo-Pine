@@ -81,7 +81,7 @@ export default function PlannerPage() {
   };
 
   return (
-    <main className="bg-[#F8F4EF] min-h-screen py-24">
+    <main className="bg-[#F8F4EF] min-h-screen py-16 md:py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -91,7 +91,7 @@ export default function PlannerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(plannerSchema) }}
       />
 
-      <div className="max-w-[1500px] mx-auto px-12 grid md:grid-cols-2 gap-28 items-start">
+      <div className="mx-auto grid max-w-[1500px] items-start gap-12 px-5 md:grid-cols-2 md:gap-28 md:px-12">
 
         <Image
           src="/kajal.jpg"
@@ -99,7 +99,7 @@ export default function PlannerPage() {
           width={780}
           height={980}
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="rounded-[32px] object-cover shadow-2xl"
+          className="rounded-[24px] object-cover shadow-2xl md:rounded-[32px]"
         />
 
         <div>
@@ -108,7 +108,7 @@ export default function PlannerPage() {
             Meet Your Planner
           </p>
 
-          <h1 className="mt-5 text-7xl font-serif leading-tight">
+          <h1 className="mt-5 text-4xl font-serif leading-tight md:text-7xl">
             Hi, I'm Kajal.
           </h1>
 
@@ -116,7 +116,7 @@ export default function PlannerPage() {
             Founder of Halo & Pine
           </p>
 
-          <div className="mt-10 max-w-2xl space-y-8 text-[#3F3F3F] leading-9">
+          <div className="mt-8 max-w-2xl space-y-6 text-[#3F3F3F] leading-8 md:mt-10 md:space-y-8 md:leading-9">
 
             <p>
               I believe every couple deserves to be fully present on their wedding day. After months (or even years) of planning, your focus shouldn't be on vendor arrivals, timeline changes, or the little details behind the scenes. That's where I come in.
@@ -142,10 +142,10 @@ export default function PlannerPage() {
               You can view our <Link href="/services" className="underline underline-offset-4">service packages</Link> or <Link href="/contact" className="underline underline-offset-4">reach out here</Link> to begin.
             </p>
 
-            <p className="pt-6 font-serif text-2xl">
+            <p className="pt-3 font-serif text-2xl md:pt-6">
               God bless,
               <br />
-              <span className="text-4xl text-[#8A7247]">
+              <span className="text-3xl text-[#8A7247] md:text-4xl">
                 Kajal
               </span>
             </p>

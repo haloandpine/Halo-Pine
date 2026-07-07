@@ -28,14 +28,14 @@ export default function AboutContent() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#F8F4EF] px-6 py-16 md:px-10 md:py-20">
+    <main className="min-h-screen bg-[#F8F4EF] px-5 py-14 md:px-10 md:py-20">
       <section
         ref={sectionRef}
         className={`mx-auto max-w-[1200px] transition-all duration-700 ease-out ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
-        <div className="grid items-center gap-12 lg:grid-cols-[2fr_3fr] lg:gap-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[2fr_3fr] lg:gap-20">
           <div className="order-1">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-[0_24px_70px_rgba(31,31,31,0.14)]">
               <Image
@@ -51,11 +51,11 @@ export default function AboutContent() {
           </div>
 
           <div className="order-2 text-[#2B2B2B]">
-            <h1 className="mt-6 text-5xl font-serif leading-tight md:text-6xl">
+            <h1 className="mt-5 text-4xl font-serif leading-tight md:mt-6 md:text-6xl">
               Hi, I&apos;m Kajal.
             </h1>
 
-            <div className="mt-8 space-y-6 text-[17px] leading-8 text-[#3F3F3F]">
+            <div className="mt-7 space-y-5 text-[17px] leading-8 text-[#3F3F3F] md:mt-8 md:space-y-6">
               <p>
                 I founded Halo &amp; Pine to bring calm, intentional coordination to celebrations that deserve thoughtful care. Every detail is managed with precision so you can stay fully present.
               </p>
@@ -76,7 +76,7 @@ export default function AboutContent() {
             <Link
               href="/contact"
               aria-label="Book a consultation with Halo and Pine"
-              className="mt-10 inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+              className="mt-9 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72] md:mt-10 md:px-10 md:py-4"
             >
               Book Consultation
             </Link>

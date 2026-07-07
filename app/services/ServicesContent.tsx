@@ -41,10 +41,10 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
 
   return (
     <>
-      <section ref={sectionRef} className="mx-auto max-w-[1200px] px-6 md:px-10">
-        <div data-reveal className="mb-9 text-center md:mb-10">
+      <section ref={sectionRef} className="mx-auto max-w-[1200px] px-5 md:px-10">
+        <div data-reveal className="mb-8 text-center md:mb-10">
           <p className="text-sm uppercase tracking-[0.35em] text-[#8A7247]">Services</p>
-          <h1 className="mx-auto mt-4 max-w-[26ch] font-serif text-[2rem] leading-tight text-[#2B2B2B] md:text-4xl">
+          <h1 className="mx-auto mt-4 max-w-[26ch] font-serif text-[1.85rem] leading-tight text-[#2B2B2B] md:text-4xl">
             Thoughtful wedding coordination designed to feel polished, seamless, and deeply personal.
           </h1>
         </div>
@@ -54,9 +54,9 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
             <article
               key={servicePackage.id}
               data-reveal
-              className="premium-card flex h-full flex-col rounded-[26px] border border-[#E8DFCF] bg-white p-7 shadow-[0_18px_34px_rgba(31,31,31,0.08)] md:p-8"
+              className="premium-card flex h-full flex-col rounded-[26px] border border-[#E8DFCF] bg-white p-5 shadow-[0_18px_34px_rgba(31,31,31,0.08)] md:p-8"
             >
-              <h2 className="font-serif text-[32px] leading-tight text-[#2B2B2B]">
+              <h2 className="font-serif text-[28px] leading-tight text-[#2B2B2B] md:text-[32px]">
                 {servicePackage.title}
               </h2>
               <p className="mt-5 overflow-hidden text-[16px] leading-7 text-[#3F3F3F] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
@@ -66,7 +66,7 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
               <button
                 type="button"
                 onClick={() => setSelectedPackageId(servicePackage.id)}
-                className="premium-button mt-9 inline-flex w-fit items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.28em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                className="premium-button mt-8 inline-flex min-h-[48px] w-fit items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.28em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72] md:mt-9 md:px-10 md:py-4"
               >
                 Let&apos;s Connect
               </button>

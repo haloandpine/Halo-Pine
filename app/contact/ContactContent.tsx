@@ -184,8 +184,8 @@ export default function ContactContent() {
         </div>
       </section>
 
-      <section data-reveal className="mx-auto mt-8 max-w-[1200px] px-6 md:mt-9 md:px-10">
-        <div className="rounded-[28px] bg-[#FBF8F2] p-8 shadow-[0_22px_50px_rgba(31,31,31,0.10)] md:p-12">
+      <section data-reveal className="mx-auto mt-8 max-w-[1200px] px-5 md:mt-9 md:px-10">
+        <div className="rounded-[28px] bg-[#FBF8F2] p-6 shadow-[0_22px_50px_rgba(31,31,31,0.10)] md:p-12">
           <div className="grid items-start gap-12 lg:grid-cols-2">
             <div data-reveal className="space-y-7 text-[#2B2B2B]">
               <div className="space-y-4 text-[17px] leading-8 text-[#3F3F3F]">
@@ -207,14 +207,14 @@ export default function ContactContent() {
                   aria-label={isFormOpen ? "Hide the contact form" : "Open the contact form"}
                   aria-expanded={isFormOpen}
                   aria-controls="contact-form-panel"
-                  className="premium-button inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                  className="premium-button inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.3em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72] md:px-10 md:py-4 md:tracking-[0.35em]"
                 >
                   Get in Touch
                 </button>
               ) : null}
             </div>
 
-            <div data-reveal className="premium-card rounded-[24px] border border-[#E8DFCF] bg-white/70 p-6 shadow-[0_12px_30px_rgba(31,31,31,0.08)] md:p-8">
+            <div data-reveal className="premium-card rounded-[24px] border border-[#E8DFCF] bg-white/70 p-5 md:p-8">
               <p className="text-2xl font-serif text-[#2B2B2B]">Reach Out</p>
               <p className="mt-3 text-[16px] leading-7 text-[#4A4A4A]">
                 Share a few details and we will guide you through the next steps with calm, thoughtful coordination.
@@ -229,7 +229,7 @@ export default function ContactContent() {
             id="contact-form-panel"
             className={`transition-all duration-500 ease-in-out ${isFormOpen || isSubmitted ? "mt-10 max-h-[1400px] opacity-100" : "max-h-0 opacity-0"} overflow-hidden`}
           >
-            <div data-reveal className="premium-card rounded-[24px] border border-[#E8DFCF] bg-white p-6 shadow-[0_18px_35px_rgba(31,31,31,0.08)] md:p-8">
+            <div data-reveal className="premium-card rounded-[24px] border border-[#E8DFCF] bg-white p-5 md:p-8">
               {isSubmitted ? (
                 <div className="py-8 text-center" role="status" aria-live="assertive">
                   <h2 ref={successHeadingRef} tabIndex={-1} className="text-4xl font-serif text-[#2B2B2B]">Thank you!</h2>
@@ -240,13 +240,13 @@ export default function ContactContent() {
                     type="button"
                     onClick={handleShowFormAgain}
                     aria-label="Open the contact form to submit another inquiry"
-                    className="premium-button mt-8 inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                    className="premium-button mt-8 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.3em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72] md:px-10 md:py-4 md:tracking-[0.35em]"
                   >
                     Submit Another Inquiry
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="grid gap-5 md:grid-cols-2">
+                <form onSubmit={handleSubmit} noValidate className="grid gap-4 md:grid-cols-2 md:gap-5">
                   <label htmlFor="contact-name" className="block">
                     <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Name *</span>
                     <input
@@ -307,7 +307,7 @@ export default function ContactContent() {
                         id="wedding-date-calendar"
                         role="dialog"
                         aria-label="Wedding date calendar"
-                        className={`absolute left-0 z-30 mt-3 w-full min-w-[260px] max-w-[340px] rounded-[18px] border border-[#E8D8B7] bg-[#FFF9F1] p-5 shadow-[0_14px_34px_rgba(31,31,31,0.12)] transition-all duration-300 ease-out ${
+                        className={`absolute left-1/2 z-30 mt-3 w-[min(calc(100vw-2.5rem),340px)] -translate-x-1/2 rounded-[18px] border border-[#E8D8B7] bg-[#FFF9F1] p-4 shadow-[0_14px_34px_rgba(31,31,31,0.12)] transition-all duration-300 ease-out md:left-0 md:w-full md:min-w-[260px] md:max-w-[340px] md:translate-x-0 md:p-5 ${
                           isCalendarOpen
                             ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
                             : "pointer-events-none -translate-y-2 scale-95 opacity-0"
@@ -413,7 +413,7 @@ export default function ContactContent() {
                       disabled={isSubmitting}
                       aria-label={isSubmitting ? "Sending your message" : "Send your message"}
                       aria-busy={isSubmitting}
-                      className="premium-button inline-flex w-full items-center justify-center rounded-full border border-[#B79F72] bg-[#C8B48A] px-10 py-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#1F1F1F] shadow-[0_10px_20px_rgba(183,159,114,0.28)] transition duration-300 hover:bg-[#b79f72] disabled:cursor-not-allowed disabled:opacity-70 md:w-auto"
+                      className="premium-button inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#B79F72] bg-[#C8B48A] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.28em] text-[#1F1F1F] shadow-[0_10px_20px_rgba(183,159,114,0.28)] transition duration-300 hover:bg-[#b79f72] disabled:cursor-not-allowed disabled:opacity-70 md:w-auto md:px-10 md:py-4 md:tracking-[0.35em]"
                     >
                       {isSubmitting ? (
                         <span className="inline-flex items-center gap-2">
