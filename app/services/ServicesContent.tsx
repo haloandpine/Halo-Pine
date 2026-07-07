@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import useRevealOnScroll from "../components/useRevealOnScroll";
 import PackageDetailsModal from "./PackageDetailsModal";
 import type { ServicePackage } from "./servicesData";
 
@@ -9,6 +10,7 @@ type ServicesContentProps = {
 };
 
 export default function ServicesContent({ packages }: ServicesContentProps) {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const [selectedPackageId, setSelectedPackageId] = useState<string | null>(null);
 
   const selectedPackage = useMemo(
@@ -35,10 +37,12 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
     };
   }, [selectedPackage]);
 
+  useRevealOnScroll(sectionRef);
+
   return (
     <>
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10">
-        <div className="mb-9 text-center md:mb-10">
+      <section ref={sectionRef} className="mx-auto max-w-[1200px] px-6 md:px-10">
+        <div data-reveal className="mb-9 text-center md:mb-10">
           <p className="text-sm uppercase tracking-[0.35em] text-[#8A7247]">Services</p>
           <h1 className="mx-auto mt-4 max-w-[26ch] font-serif text-[2rem] leading-tight text-[#2B2B2B] md:text-4xl">
             Thoughtful wedding coordination designed to feel polished, seamless, and deeply personal.
@@ -49,7 +53,8 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
           {packages.map((servicePackage) => (
             <article
               key={servicePackage.id}
-              className="flex h-full flex-col rounded-[26px] border border-[#E8DFCF] bg-white p-7 shadow-[0_18px_34px_rgba(31,31,31,0.08)] md:p-8"
+              data-reveal
+              className="premium-card flex h-full flex-col rounded-[26px] border border-[#E8DFCF] bg-white p-7 shadow-[0_18px_34px_rgba(31,31,31,0.08)] md:p-8"
             >
               <h2 className="font-serif text-[32px] leading-tight text-[#2B2B2B]">
                 {servicePackage.title}
@@ -61,7 +66,7 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
               <button
                 type="button"
                 onClick={() => setSelectedPackageId(servicePackage.id)}
-                className="mt-9 inline-flex w-fit items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.28em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                className="premium-button mt-9 inline-flex w-fit items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.28em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
               >
                 Let&apos;s Connect
               </button>

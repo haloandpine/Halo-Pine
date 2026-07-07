@@ -5,6 +5,7 @@ import Link from "next/link";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import useRevealOnScroll from "../components/useRevealOnScroll";
 
 export default function ContactContent() {
   const controlClassName =
@@ -20,6 +21,7 @@ export default function ContactContent() {
   const firstInputRef = useRef<HTMLInputElement | null>(null);
   const successHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const submitErrorRef = useRef<HTMLParagraphElement | null>(null);
+  const mainRef = useRef<HTMLElement | null>(null);
 
   const formatDateValue = (date: Date) => {
     const year = date.getFullYear();
@@ -96,6 +98,8 @@ export default function ContactContent() {
     }
   }, [submitError]);
 
+  useRevealOnScroll(mainRef);
+
   const handleShowFormAgain = () => {
     setIsSubmitted(false);
     setSubmitError(null);
@@ -158,8 +162,8 @@ export default function ContactContent() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F4EF] pb-24">
-      <section className="relative h-[300px] overflow-hidden">
+    <main ref={mainRef} className="min-h-screen bg-[#F8F4EF] pb-24">
+      <section data-reveal className="relative h-[300px] overflow-hidden">
         <Image
           src="/services-hero.jpg"
           alt="Softly lit wedding ceremony backdrop with florals"
@@ -180,10 +184,10 @@ export default function ContactContent() {
         </div>
       </section>
 
-      <section className="mx-auto mt-8 max-w-[1200px] px-6 md:mt-9 md:px-10">
+      <section data-reveal className="mx-auto mt-8 max-w-[1200px] px-6 md:mt-9 md:px-10">
         <div className="rounded-[28px] bg-[#FBF8F2] p-8 shadow-[0_22px_50px_rgba(31,31,31,0.10)] md:p-12">
           <div className="grid items-start gap-12 lg:grid-cols-2">
-            <div className="space-y-7 text-[#2B2B2B]">
+            <div data-reveal className="space-y-7 text-[#2B2B2B]">
               <div className="space-y-4 text-[17px] leading-8 text-[#3F3F3F]">
                 <p>📍 Port Coquitlam, BC</p>
                 <p>📞 (604) 442-6406</p>
@@ -203,14 +207,14 @@ export default function ContactContent() {
                   aria-label={isFormOpen ? "Hide the contact form" : "Open the contact form"}
                   aria-expanded={isFormOpen}
                   aria-controls="contact-form-panel"
-                  className="inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                  className="premium-button inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
                 >
                   Get in Touch
                 </button>
               ) : null}
             </div>
 
-            <div className="rounded-[24px] border border-[#E8DFCF] bg-white/70 p-6 shadow-[0_12px_30px_rgba(31,31,31,0.08)] md:p-8">
+            <div data-reveal className="premium-card rounded-[24px] border border-[#E8DFCF] bg-white/70 p-6 shadow-[0_12px_30px_rgba(31,31,31,0.08)] md:p-8">
               <p className="text-2xl font-serif text-[#2B2B2B]">Reach Out</p>
               <p className="mt-3 text-[16px] leading-7 text-[#4A4A4A]">
                 Share a few details and we will guide you through the next steps with calm, thoughtful coordination.
@@ -225,21 +229,18 @@ export default function ContactContent() {
             id="contact-form-panel"
             className={`transition-all duration-500 ease-in-out ${isFormOpen || isSubmitted ? "mt-10 max-h-[1400px] opacity-100" : "max-h-0 opacity-0"} overflow-hidden`}
           >
-            <div className="rounded-[24px] border border-[#E8DFCF] bg-white p-6 shadow-[0_18px_35px_rgba(31,31,31,0.08)] md:p-8">
+            <div data-reveal className="premium-card rounded-[24px] border border-[#E8DFCF] bg-white p-6 shadow-[0_18px_35px_rgba(31,31,31,0.08)] md:p-8">
               {isSubmitted ? (
                 <div className="py-8 text-center" role="status" aria-live="assertive">
                   <h2 ref={successHeadingRef} tabIndex={-1} className="text-4xl font-serif text-[#2B2B2B]">Thank you!</h2>
-                  <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-[#4A4A4A]">
-                    We&apos;ve received your inquiry and will get back to you within 24–48 hours.
-                  </p>
-                  <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-7 text-[#6E6046]">
-                    Your message was sent successfully.
+                  <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-8 text-[#4A4A4A]">
+                    Thank you. We&apos;ll be in touch within 24 hours.
                   </p>
                   <button
                     type="button"
                     onClick={handleShowFormAgain}
                     aria-label="Open the contact form to submit another inquiry"
-                    className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                    className="premium-button mt-8 inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.35em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
                   >
                     Submit Another Inquiry
                   </button>
@@ -411,9 +412,15 @@ export default function ContactContent() {
                       type="submit"
                       disabled={isSubmitting}
                       aria-label={isSubmitting ? "Sending your message" : "Send your message"}
-                      className="inline-flex w-full items-center justify-center rounded-full border border-[#B79F72] bg-[#C8B48A] px-10 py-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#1F1F1F] shadow-[0_10px_20px_rgba(183,159,114,0.28)] transition duration-300 hover:bg-[#b79f72] disabled:cursor-not-allowed disabled:opacity-70 md:w-auto"
+                      aria-busy={isSubmitting}
+                      className="premium-button inline-flex w-full items-center justify-center rounded-full border border-[#B79F72] bg-[#C8B48A] px-10 py-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#1F1F1F] shadow-[0_10px_20px_rgba(183,159,114,0.28)] transition duration-300 hover:bg-[#b79f72] disabled:cursor-not-allowed disabled:opacity-70 md:w-auto"
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      {isSubmitting ? (
+                        <span className="inline-flex items-center gap-2">
+                          <span aria-hidden="true" className="h-4 w-4 animate-spin rounded-full border-2 border-[#1F1F1F]/30 border-t-[#1F1F1F]" />
+                          Sending...
+                        </span>
+                      ) : "Send Message"}
                     </button>
                   </div>
                 </form>

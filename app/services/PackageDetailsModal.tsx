@@ -31,7 +31,7 @@ export default function PackageDetailsModal({
         aria-modal="true"
         aria-labelledby="service-modal-title"
         aria-describedby="service-modal-description"
-        className={`w-full max-w-[700px] rounded-[32px] border border-[#E8DFCF] bg-[#FBF8F2] p-10 shadow-[0_35px_80px_rgba(20,20,20,0.35)] transition-all duration-500 ease-out md:p-12 ${
+        className={`premium-modal w-full max-w-[700px] rounded-[32px] border border-[#E8DFCF] bg-[#FBF8F2] p-10 shadow-[0_35px_80px_rgba(20,20,20,0.35)] transition-all duration-500 ease-out md:p-12 ${
           isOpen ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-95 opacity-0"
         }`}
       >
@@ -61,14 +61,14 @@ export default function PackageDetailsModal({
             <div className="mt-12 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
               <Link
                 href={`/contact?service=${encodeURIComponent(servicePackage.title)}`}
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                className="premium-button inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
               >
                 Book Consultation
               </Link>
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#CFC3AF] bg-transparent px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-[#2B2B2B] transition duration-300 hover:bg-[#F3EDE2]"
+                className="premium-button inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#CFC3AF] bg-transparent px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-[#2B2B2B] transition duration-300 hover:bg-[#F3EDE2]"
               >
                 Close
               </button>
