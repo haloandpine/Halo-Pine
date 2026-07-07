@@ -53,8 +53,8 @@ export default function Hero() {
               <Link href="/about" className="underline underline-offset-4 hover:text-[#E7D8B2]">
                 Meet Your Planner
               </Link>
-              <Link href="/faq" className="underline underline-offset-4 hover:text-[#E7D8B2]">
-                Wedding FAQs
+              <Link href="/contact" className="underline underline-offset-4 hover:text-[#E7D8B2]">
+                Start Here
               </Link>
             </div>
           </div>

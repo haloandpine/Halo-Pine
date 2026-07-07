@@ -69,7 +69,7 @@ export default function AboutContent() {
               </p>
 
               <p>
-                If you are comparing options, you can explore our <Link href="/services" className="underline underline-offset-4">wedding coordination services</Link>, review <Link href="/faq" className="underline underline-offset-4">frequently asked questions</Link>, or <Link href="/contact" className="underline underline-offset-4">get in touch</Link> to discuss your day.
+                If you are comparing options, you can explore our <Link href="/services" className="underline underline-offset-4">wedding coordination services</Link> and <Link href="/contact" className="underline underline-offset-4">get in touch</Link> to discuss your day.
               </p>
             </div>
 

@@ -204,7 +204,7 @@ export default function ContactContent() {
                 Share a few details and we will guide you through the next steps with calm, thoughtful coordination.
               </p>
               <p className="mt-4 text-[15px] leading-7 text-[#4A4A4A]">
-                New here? Start with our <Link href="/services" className="underline underline-offset-4">service packages</Link>, or browse our <Link href="/faq" className="underline underline-offset-4">wedding FAQ</Link>.
+                New here? Start with our <Link href="/services" className="underline underline-offset-4">service packages</Link>, then <Link href="/contact" className="underline underline-offset-4">contact us</Link> with your date and details.
               </p>
             </div>
           </div>

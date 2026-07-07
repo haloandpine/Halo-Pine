@@ -247,7 +247,7 @@ export default function ServicesPage() {
         <section className="mt-16 border-t border-[#D8CCB5] pt-10 text-[#3F3F3F]">
           <h2 className="font-serif text-3xl text-[#2B2B2B] md:text-4xl">Planning Your Next Step</h2>
           <p className="mt-4 max-w-3xl text-[17px] leading-8">
-            Learn more about our approach on the <Link href="/about" className="underline underline-offset-4">About page</Link>, review common questions in our <Link href="/faq" className="underline underline-offset-4">Wedding FAQ</Link>, or <Link href="/contact" className="underline underline-offset-4">contact us</Link> to check availability.
+            Learn more about our approach on the <Link href="/about" className="underline underline-offset-4">About page</Link>, explore package details above, or <Link href="/contact" className="underline underline-offset-4">contact us</Link> to check availability.
           </p>
         </section>
       </section>

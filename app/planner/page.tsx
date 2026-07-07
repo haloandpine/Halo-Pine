@@ -113,7 +113,7 @@ export default function PlannerPage() {
             </p>
 
             <p>
-              You can view our <Link href="/services" className="underline underline-offset-4">service packages</Link>, read our <Link href="/faq" className="underline underline-offset-4">wedding FAQ</Link>, or <Link href="/contact" className="underline underline-offset-4">reach out here</Link> to begin.
+              You can view our <Link href="/services" className="underline underline-offset-4">service packages</Link> or <Link href="/contact" className="underline underline-offset-4">reach out here</Link> to begin.
             </p>
 
             <p className="pt-6 font-serif text-2xl">
