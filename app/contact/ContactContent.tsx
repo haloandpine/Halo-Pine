@@ -7,6 +7,9 @@ import "react-day-picker/style.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 export default function ContactContent() {
+  const controlClassName =
+    "w-full h-12 rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]";
+
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -252,7 +255,7 @@ export default function ContactContent() {
                       required
                       autoComplete="name"
                       aria-required="true"
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                      className={controlClassName}
                     />
                   </label>
 
@@ -266,7 +269,7 @@ export default function ContactContent() {
                       autoComplete="email"
                       inputMode="email"
                       aria-required="true"
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                      className={controlClassName}
                     />
                   </label>
 
@@ -278,7 +281,7 @@ export default function ContactContent() {
                       type="tel"
                       autoComplete="tel"
                       inputMode="tel"
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                      className={controlClassName}
                     />
                   </label>
 
@@ -293,7 +296,7 @@ export default function ContactContent() {
                         aria-expanded={isCalendarOpen}
                         aria-controls="wedding-date-calendar"
                         aria-haspopup="dialog"
-                        className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-left text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                        className={`${controlClassName} text-left`}
                       >
                         {formatDateLabel(selectedWeddingDate)}
                       </button>
@@ -343,7 +346,7 @@ export default function ContactContent() {
                       id="contact-venue"
                       name="venue"
                       autoComplete="organization"
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                      className={controlClassName}
                     />
                   </label>
 
@@ -355,7 +358,7 @@ export default function ContactContent() {
                       required
                       defaultValue=""
                       aria-required="true"
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                      className={controlClassName}
                     >
                       <option value="" disabled>Select a service</option>
                       <option value="Day-of Coordination (The Essential)">Day-of Coordination (The Essential)</option>
@@ -364,7 +367,7 @@ export default function ContactContent() {
                     </select>
                   </label>
 
-                  <label htmlFor="contact-guest-count" className="block md:col-start-2">
+                  <label htmlFor="contact-guest-count" className="block md:col-span-2">
                     <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Guest Count</span>
                     <input
                       id="contact-guest-count"
@@ -372,7 +375,7 @@ export default function ContactContent() {
                       type="number"
                       min={1}
                       inputMode="numeric"
-                      className="w-full rounded-xl border border-[#CFC3AF] bg-[#FFFCF8] px-4 py-3 text-[#2B2B2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition focus:border-[#8A7247]"
+                      className={controlClassName}
                     />
                   </label>
 
