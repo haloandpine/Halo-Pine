@@ -77,7 +77,7 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
             setSelectedPackageId(null);
           }
         }}
-        className={`fixed inset-0 z-50 flex items-center justify-center bg-[rgba(24,24,24,0.42)] px-6 backdrop-blur-sm transition-all duration-300 ${
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-[rgba(20,20,20,0.56)] px-6 py-8 backdrop-blur-md transition-all duration-500 ease-out ${
           selectedPackage ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
@@ -86,8 +86,8 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
           aria-modal="true"
           aria-labelledby="service-modal-title"
           aria-describedby="service-modal-description"
-          className={`w-full max-w-2xl rounded-[30px] border border-[#E8DFCF] bg-[#FBF8F2] p-7 shadow-[0_35px_80px_rgba(20,20,20,0.35)] transition-all duration-300 md:p-10 ${
-            selectedPackage ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          className={`w-full max-w-[700px] rounded-[32px] border border-[#E8DFCF] bg-[#FBF8F2] p-10 shadow-[0_35px_80px_rgba(20,20,20,0.35)] transition-all duration-500 ease-out md:p-12 ${
+            selectedPackage ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-95 opacity-0"
           }`}
         >
           {selectedPackage ? (
@@ -113,17 +113,17 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
                 </ul>
               </div>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-12 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
                 <Link
                   href={`/contact?service=${encodeURIComponent(selectedPackage.title)}`}
-                  className="inline-flex items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3 text-sm font-medium uppercase tracking-[0.2em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8B48A] px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72]"
                 >
                   Book Consultation
                 </Link>
                 <button
                   type="button"
                   onClick={() => setSelectedPackageId(null)}
-                  className="inline-flex items-center justify-center rounded-full border border-[#CFC3AF] bg-transparent px-8 py-3 text-sm font-medium uppercase tracking-[0.2em] text-[#2B2B2B] transition duration-300 hover:bg-[#F3EDE2]"
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#CFC3AF] bg-transparent px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-[#2B2B2B] transition duration-300 hover:bg-[#F3EDE2]"
                 >
                   Close
                 </button>
