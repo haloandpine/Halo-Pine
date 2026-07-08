@@ -27,9 +27,23 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const response = await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (response.ok) {
+    alert("Inquiry sent successfully!");
+  } else {
+    alert("Something went wrong.");
+  }
+};
 const [selectedDate, setSelectedDate] = useState<Date>();
 
   return (
