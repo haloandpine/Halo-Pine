@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Hero from "./components/Hero";
 
 export const metadata: Metadata = {
-  title: "Luxury Wedding Coordination in Vancouver",
+  title: "Wedding Coordination in Vancouver",
   description:
     "Halo & Pine offers refined wedding coordination in Vancouver and the Lower Mainland, helping couples enjoy a calm, seamless, and beautifully managed celebration.",
   alternates: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     url: "https://www.haloandpine.ca/",
-    title: "Luxury Wedding Coordination in Vancouver | Halo & Pine",
+    title: "Wedding Coordination in Vancouver | Halo & Pine",
     description:
       "Halo & Pine offers refined wedding coordination in Vancouver and the Lower Mainland for calm, seamless wedding days.",
     images: [
