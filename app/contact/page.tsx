@@ -1,6 +1,52 @@
-import ContactCTA from "../components/ContactCTA";
+"use client";
 
+import { useState } from "react";
+import ContactCTA from "../components/ContactCTA";
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+  fullName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  weddingDate: "",
+  venue: "",
+  serviceInterestedIn: "",
+  referralSource: "",
+  message: "",
+});
+
+const [sending, setSending] = useState(false);
+
+const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setSending(true);
+
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  setSending(false);
+
+  if (res.ok) {
+    alert("Inquiry sent successfully.");
+  } else {
+    alert("Something went wrong.");
+  }
+};
   return (
     <>
       {/* HERO */}
@@ -72,14 +118,14 @@ export default function ContactPage() {
                 </p>
               </div>
 
-            <div className="mt-14 overflow-hidden rounded-[28px] shadow-lg">
-              <iframe
-                title="Google Map"
-                src="https://www.google.com/maps?q=Port+Coquitlam,+BC&output=embed"
-                className="h-[420px] w-full border-0"
-                loading="lazy"
-              />
-            </div>
+            <div className="mt-14 w-full overflow-hidden rounded-[28px] shadow-lg">
+  <iframe
+    title="Google Map"
+    src="https://www.google.com/maps?q=Port+Coquitlam,+BC&output=embed"
+    className="h-[320px] w-full"
+    loading="lazy"
+  />
+</div>
 
           </div>
 
@@ -95,39 +141,59 @@ export default function ContactPage() {
               Tell us a little about your day.
             </p>
 
-            <form className="mt-10 space-y-6">
+          <form onSubmit={handleSubmit} className="mt-10 space-y-6">
 
               <div className="grid gap-6 md:grid-cols-2">
 
                 <input
-                  placeholder="First Name"
-                  className="rounded-xl border border-[#DDD] p-4 outline-none"
-                />
+  name="fullName"
+  value={formData.fullName}
+  onChange={handleChange}
+  placeholder="First Name"
+  className="rounded-xl border border-[#DDD] p-4 outline-none"
+/>
 
                 <input
-                  placeholder="Last Name"
-                  className="rounded-xl border border-[#DDD] p-4 outline-none"
-                />
+  placeholder="Last Name"
+  name="lastName"
+  value={formData.lastName}
+  onChange={handleChange}
+  className="rounded-xl border border-[#DDD] p-4 outline-none"
+/>
 
               </div>
 
               <input
-                type="email"
-                placeholder="Email"
-                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              />
+  type="email"
+  name="email"
+  value={formData.email}
+  onChange={handleChange}
+  placeholder="Email"
+  className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+/>
 
               <input
                 placeholder="Phone"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               />
 
               <input
                 type="date"
+                name="weddingDate"
+                value={formData.weddingDate}
+                onChange={handleChange}
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
                 ></input>
 
-              <select className="w-full rounded-xl border border-[#DDD] p-4 outline-none">
+              <select
+                name="serviceInterestedIn"
+value={formData.serviceInterestedIn}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+              >
   <option value="">Select Your Package</option>
   <option value="intimate">The Intimate</option>
   <option value="essential">The Essential</option>
@@ -136,17 +202,26 @@ export default function ContactPage() {
 
 <input
   placeholder="Wedding Venue"
+  name="venue"
+  value={formData.venue}
+  onChange={handleChange}
   className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
 />
 
 <input
   placeholder="How did you hear about us?"
+  name="referralSource"
+  value={formData.referralSource}
+  onChange={handleChange}
   className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
 />
 
 <textarea
   rows={6}
   placeholder="Tell us about your wedding..."
+  name="message"
+  value={formData.message}
+  onChange={handleChange}
   className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
 />
 
