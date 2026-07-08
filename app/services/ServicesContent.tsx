@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import useRevealOnScroll from "../components/useRevealOnScroll";
 import PackageDetailsModal from "./PackageDetailsModal";
@@ -51,11 +51,31 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
 
         <div className="grid gap-6 lg:grid-cols-3 lg:gap-7">
           {packages.map((servicePackage) => (
-            <article
-              key={servicePackage.id}
-              data-reveal
-              className="premium-card flex h-full flex-col rounded-[26px] border border-[#E8DFCF] bg-white p-5 shadow-[0_18px_34px_rgba(31,31,31,0.08)] md:p-8"
-            >
+  <article
+    key={servicePackage.id}
+    data-reveal
+    onClick={() => setSelectedPackageId(servicePackage.id)}
+    className="group premium-card flex h-full cursor-pointer flex-col overflow-hidden rounded-[26px] border border-[#E8DFCF] bg-white shadow-[0_18px_34px_rgba(31,31,31,0.08)]"
+  >
+    <div className="relative h-[420px] overflow-hidden">
+  <img
+    src={
+      servicePackage.id === "intimate"
+        ? "/custom.jpg"
+        : servicePackage.id === "essential"
+        ? "/dayof.jpg"
+        : "/monthof.jpg"
+    }
+    alt={servicePackage.title}
+    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+  />
+
+  <div className="absolute inset-0 bg-black/30" />
+</div>
+
+<div className="flex flex-1 flex-col p-8">
+
+
               <h2 className="font-serif text-[28px] leading-tight text-[#2B2B2B] md:text-[32px]">
                 {servicePackage.title}
               </h2>
@@ -70,7 +90,9 @@ export default function ServicesContent({ packages }: ServicesContentProps) {
               >
                 Let&apos;s Connect
               </button>
+</div>
             </article>
+          
           ))}
         </div>
       </section>
