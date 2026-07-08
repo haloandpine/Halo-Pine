@@ -1,20 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import ContactCTA from "../components/ContactCTA";
+import DatePicker from "../components/DatePicker";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    weddingDate: "",
-    package: "",
-    venue: "",
-    referral: "",
-    message: "",
-  });
+  fullName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  weddingDate: "",
+  package: "",
+  venue: "",
+  referralSource: "",
+  message: "",
+});
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -30,6 +30,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
+const [selectedDate, setSelectedDate] = useState<Date>();
 
   return (
     <>
@@ -126,10 +127,10 @@ export default function ContactPage() {
             ><div className="grid gap-5 md:grid-cols-2">
 
                 <input
-                  name="firstName"
-                  value={formData.firstName}
+                  name="fullName"
+                  value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="First Name"
+                  placeholder="Full Name"
                   className="rounded-xl border border-[#DDD] p-4 outline-none"
                 />
 
@@ -153,21 +154,26 @@ export default function ContactPage() {
               />
 
               <input
-                name="phone"
-                value={formData.phone}
+                name="phoneNumber"
+                value={formData.phoneNumber}
                 onChange={handleChange}
                 placeholder="Phone"
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               />
 
-              <input
-                type="date"
-                name="weddingDate"
-                value={formData.weddingDate}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              />
+              <DatePicker
+  value={selectedDate}
+  onChange={(date) => {
+    setSelectedDate(date);
 
+    setFormData({
+      ...formData,
+      weddingDate: date
+        ? date.toISOString().split("T")[0]
+        : "",
+    });
+  }}
+/>
               <select
                 name="package"
                 value={formData.package}
@@ -188,13 +194,21 @@ export default function ContactPage() {
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               />
 
-              <input
-                name="referral"
-                value={formData.referral}
-                onChange={handleChange}
-                placeholder="How did you hear about us?"
-                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              />
+              <select
+  name="referralSource"
+  value={formData.referralSource}
+  onChange={handleChange}
+  className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+>
+  <option value="">How did you hear about us?</option>
+  <option value="Google">Google</option>
+  <option value="Instagram">Instagram</option>
+  <option value="Facebook">Facebook</option>
+  <option value="Friend">Friend / Family</option>
+  <option value="Vendor">Vendor Referral</option>
+  <option value="WeddingWire">WeddingWire</option>
+  <option value="Other">Other</option>
+</select>
 
               <textarea
                 rows={6}
@@ -219,8 +233,6 @@ export default function ContactPage() {
         </div>
 
       </section>
-
-      <ContactCTA />
 
     </>
   );
