@@ -69,8 +69,15 @@ export async function POST(request: Request) {
 });
 console.log("SERVICE:", serviceInterestedIn);
 console.log("REFERRAL:", referralSource);
-console.log("VALID SERVICE:", SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption));
-console.log("VALID REFERRAL:", REFERRAL_OPTIONS.includes(referralSource as ReferralOption));
+console.log("REFERRAL VALUE:", referralSource);
+console.log(
+  "VALID SERVICE:",
+  SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption)
+);
+console.log(
+  "VALID REFERRAL:",
+  REFERRAL_OPTIONS.includes(referralSource as ReferralOption)
+);
 
   if (!fullName || !email || !weddingDate || !serviceInterestedIn || !referralSource || !message) {
     return NextResponse.json(
