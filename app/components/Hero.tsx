@@ -1,52 +1,69 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden">
-      <Image
-        src="/hero.PNG"
-        alt="Romantic wedding reception table setting with candlelight"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
+    <section className="bg-white">
+      <div className="mx-auto max-w-6xl px-6 py-24 md:py-36">
 
-      <div className="absolute inset-0 bg-black/35" />
+        <div className="grid md:grid-cols-2 gap-16 items-center">
 
-      <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-        <div className="flex flex-col items-center justify-center gap-6">
-          <Image
-            src="/logo.PNG"
-            alt="Halo and Pine logo"
-            width={650}
-            height={240}
-            priority
-            sizes="(min-width: 768px) 650px, 288px"
-            className="w-72 md:w-[650px] h-auto"
-          />
+          {/* Left */}
+          <div>
 
-          <div className="flex flex-col items-center gap-4">
-            <h1 className="text-white text-3xl md:text-5xl font-serif leading-tight">
-              Creating calm for
-              <br />
-              your most meaningful day.
-            </h1>
-
-            <p className="uppercase tracking-[0.45em] text-[#E7D8B2] text-lg">
-              Wedding Coordination
+            <p className="uppercase tracking-[0.35em] text-sm text-neutral-500 mb-6">
+              Halo & Pine
             </p>
 
-            <Link
-              href="/contact"
-              aria-label="Book a consultation with Halo and Pine"
-              className="mt-4 rounded-full bg-[#C8B48A] px-10 py-4 text-[#1F1F1F] transition duration-300 hover:bg-[#b59f72]"
-            >
-              Book Consultation
-            </Link>
+            <h1 className="text-5xl md:text-7xl font-serif text-neutral-900 leading-tight">
+              Thoughtful
+              <br />
+              Wedding
+              <br />
+              Coordination
+            </h1>
+
+            <p className="mt-8 max-w-md text-lg leading-8 text-neutral-600">
+              Creating calm for your most meaningful day through thoughtful,
+              intentional coordination across Greater Vancouver.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+
+              <Link
+                href="/services"
+                className="rounded-full bg-[#C8B48A] px-8 py-4 text-sm tracking-[0.2em] uppercase text-white transition hover:opacity-90"
+              >
+                View Services
+              </Link>
+
+              <Link
+                href="/contact"
+                className="rounded-full border border-neutral-300 px-8 py-4 text-sm tracking-[0.2em] uppercase text-neutral-800 transition hover:bg-neutral-100"
+              >
+                Book Consultation
+              </Link>
+
+            </div>
+
           </div>
+
+          {/* Right */}
+
+          <div className="relative">
+
+            <Image
+              src="/kajal-home.jpg"
+              alt="Wedding Coordinator"
+              width={700}
+              height={850}
+              className="rounded-3xl object-cover shadow-xl"
+            />
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );
