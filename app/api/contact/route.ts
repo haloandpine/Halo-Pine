@@ -7,9 +7,9 @@ console.log("RESEND KEY:", resendApiKey);
 console.log("HAS KEY:", !!resendApiKey);
 
 const SERVICE_OPTIONS = [
-  "The Intimate — Elopements & Micro Weddings",
-  "The Essential — Day-of Coordination",
-  "The Signature — Month-of Coordination",
+  "The Intimate",
+  "The Essential",
+  "The Signature",
 ] as const;
 
 type ServiceOption = (typeof SERVICE_OPTIONS)[number];
