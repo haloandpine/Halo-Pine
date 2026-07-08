@@ -59,6 +59,14 @@ export async function POST(request: Request) {
   const serviceInterestedIn = clean(body.serviceInterestedIn);
   const referralSource = clean(body.referralSource);
   const message = clean(body.message);
+  console.log({
+  fullName,
+  email,
+  weddingDate,
+  serviceInterestedIn,
+  referralSource,
+  message,
+});
 
   if (!fullName || !email || !weddingDate || !serviceInterestedIn || !referralSource || !message) {
     return NextResponse.json(
