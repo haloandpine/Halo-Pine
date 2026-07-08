@@ -118,7 +118,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </p>
               </div>
 
-            <div className="mt-14 w-full overflow-hidden rounded-[28px] shadow-lg">
+            <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-2 items-start">
   <iframe
     title="Google Map"
     src="https://www.google.com/maps?q=Port+Coquitlam,+BC&output=embed"
