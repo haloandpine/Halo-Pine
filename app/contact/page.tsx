@@ -10,7 +10,7 @@ export default function ContactPage() {
   email: "",
   phoneNumber: "",
   weddingDate: "",
-  package: "",
+  serviceInterestedIn: "",
   venue: "",
   referralSource: "",
   message: "",
@@ -189,8 +189,8 @@ const [selectedDate, setSelectedDate] = useState<Date>();
   }}
 />
               <select
-                name="package"
-                value={formData.package}
+                name="serviceInterestedIn"
+                value={formData.serviceInterestedIn}
                 onChange={handleChange}
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               >
@@ -215,11 +215,11 @@ const [selectedDate, setSelectedDate] = useState<Date>();
   className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
 >
   <option value="">How did you hear about us?</option>
-  <option value="Google">Google</option>
+  <option value="Google Search">Google</option>
   <option value="Instagram">Instagram</option>
   <option value="Facebook">Facebook</option>
-  <option value="Friend">Friend / Family</option>
-  <option value="Vendor">Vendor Referral</option>
+  <option value="Friend or Family">Friend / Family</option>
+  <option value="Referral">Vendor Referral</option>
   <option value="WeddingWire">WeddingWire</option>
   <option value="Other">Other</option>
 </select>
