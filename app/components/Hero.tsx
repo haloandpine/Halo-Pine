@@ -11,11 +11,7 @@ export default function Hero() {
           {/* Left */}
           <div>
 
-            <p className="uppercase tracking-[0.35em] text-sm text-neutral-500 mb-6">
-              Halo & Pine
-            </p>
-
-            <h1 className="text-5xl md:text-7xl font-serif text-neutral-900 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-serif font-light leading-[0.95] tracking-[-0.03em] text-[#3E3A36]">
               Thoughtful
               <br />
               Wedding
@@ -28,18 +24,18 @@ export default function Hero() {
               intentional coordination across Greater Vancouver.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="md:mt-5 flex flex-wrap gap-4">
 
               <Link
                 href="/services"
-                className="rounded-full bg-[#C8B48A] px-8 py-4 text-sm tracking-[0.2em] uppercase text-white transition hover:opacity-90"
+                className="rounded-full bg-[#C8B48A] px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.18em] transition-all duration-300 hover:bg-[#B7A173] hover:-translate-y-0.5"
               >
                 View Services
               </Link>
 
               <Link
                 href="/contact"
-                className="rounded-full border border-neutral-300 px-8 py-4 text-sm tracking-[0.2em] uppercase text-neutral-800 transition hover:bg-neutral-100"
+                className="rounded-full border border-[#D8D0C5] px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[#3E3A36] transition-all duration-300 hover:border-[#C8B48A] hover:bg-[#F8F4EF] hover:-translate-y-0.5"
               >
                 Book Consultation
               </Link>
@@ -50,17 +46,17 @@ export default function Hero() {
 
           {/* Right */}
 
-          <div className="relative">
+          <div className="relative h-[620px] overflow-hidden rounded-[28px] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.18)]">
 
-            <Image
-              src="/kajal-home.jpg"
-              alt="Wedding Coordinator"
-              width={700}
-              height={850}
-              className="rounded-3xl object-cover shadow-xl"
-            />
+  <Image
+    src="/kajal-home.jpg"
+    alt="Wedding Coordinator"
+    width={800}
+    height={1000}
+    className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+  />
 
-          </div>
+</div>
 
         </div>
 
