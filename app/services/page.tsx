@@ -1,3 +1,5 @@
+export default function ServicesPage() {
+  return (
 <section className="bg-white py-24">
   <div className="mx-auto max-w-7xl px-6">
 
@@ -122,3 +124,5 @@
 
   </div>
 </section>
+  );
+}
