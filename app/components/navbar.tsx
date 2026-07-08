@@ -31,9 +31,9 @@ export default function Navbar() {
   <Image
     src="/logo.PNG"
     alt="Halo & Pine"
-    width={180}
+    width={220}
     height={60}
-    className="h-12 w-auto"
+    className="h-10 w-auto object-contain"
     priority
   />
 </Link>
