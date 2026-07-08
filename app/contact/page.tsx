@@ -30,8 +30,9 @@ export default function ContactPage() {
       {/* CONTACT */}
 
       <section className="bg-[#F9F7F3] py-28">
-        <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-2">
 
+        <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-2">
+</div>
           {/* LEFT */}
 
           <div>
@@ -71,19 +72,10 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div>
-
-                <p className="mt-2 text-lg text-[#3E3A36]">
-                  @haloandpine
-                </p>
-              </div>
-
-            </div>
-
             <div className="mt-14 overflow-hidden rounded-[28px] shadow-lg">
               <iframe
                 title="Google Map"
-                src="https://www.google.com/maps?q=Vancouver,+BC&output=embed"
+                src="https://www.google.com/maps?q=Port+Coquitlam,+BC&output=embed"
                 className="h-[420px] w-full border-0"
                 loading="lazy"
               />
@@ -133,29 +125,36 @@ export default function ContactPage() {
               <input
                 type="date"
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              /><input
-                placeholder="Venue / Location"
-                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              />
+                ></input>
 
               <select className="w-full rounded-xl border border-[#DDD] p-4 outline-none">
-                <option>Select a Package</option>
-                <option>The Intimate</option>
-                <option>The Essential</option>
-                <option>The Signature</option>
-              </select>
+  <option value="">Select Your Package</option>
+  <option value="intimate">The Intimate</option>
+  <option value="essential">The Essential</option>
+  <option value="signature">The Signature</option>
+</select>
 
-              <textarea
-                rows={6}
-                placeholder="Tell us about your wedding..."
-                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              />
+<input
+  placeholder="Wedding Venue"
+  className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+/>
 
-              <button
-                className="w-full rounded-full bg-[#C8B48A] py-4 uppercase tracking-[0.25em] text-sm font-medium transition hover:bg-[#b39b70]"
-              >
-                Send Inquiry
-              </button>
+<input
+  placeholder="How did you hear about us?"
+  className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+/>
+
+<textarea
+  rows={6}
+  placeholder="Tell us about your wedding..."
+  className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+/>
+
+<button
+  className="w-full rounded-full bg-[#C8B48A] py-4 uppercase tracking-[0.25em] text-sm font-medium transition hover:bg-[#b39b70]"
+>
+  Send Inquiry
+</button>
 
             </form>
 
