@@ -3,6 +3,9 @@ import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 
+console.log("RESEND KEY:", resendApiKey);
+console.log("HAS KEY:", !!resendApiKey);
+
 const SERVICE_OPTIONS = [
   "The Intimate — Elopements & Micro Weddings",
   "The Essential — Day-of Coordination",
