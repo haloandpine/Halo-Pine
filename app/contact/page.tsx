@@ -3,8 +3,7 @@
 import { useState } from "react";
 import DatePicker from "../components/DatePicker";
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
+const initialFormData = {
   fullName: "",
   lastName: "",
   email: "",
@@ -14,7 +13,13 @@ export default function ContactPage() {
   venue: "",
   referralSource: "",
   message: "",
-});
+};
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState(initialFormData);
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -30,25 +35,37 @@ export default function ContactPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  console.log("FORM DATA:", formData);
+    e.preventDefault();
 
-  const response = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
+    if (isSubmitting) {
+      return;
+    }
 
-  if (response.ok) {
-    alert("Inquiry sent successfully!");
-  } else {
-    alert("Something went wrong.");
-  }
-};
-const [selectedDate, setSelectedDate] = useState<Date>();
+    setIsSubmitting(true);
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Something went wrong.");
+      }
+
+      setFormData(initialFormData);
+      setSelectedDate(undefined);
+      setSubmitMessage("Inquiry sent successfully!");
+    } catch {
+      setSubmitMessage("Something went wrong.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -85,12 +102,12 @@ const [selectedDate, setSelectedDate] = useState<Date>();
             </p>
 
             <h2 className="mt-4 font-serif text-5xl text-[#3E3A36]">
-              We'd love to hear about your wedding.
+              We&apos;d love to hear about your wedding.
             </h2>
 
             <p className="mt-8 max-w-md leading-8 text-[#666]">
-              Whether you're planning an intimate celebration or a full wedding
-              weekend, we'd be honoured to learn more about your vision.
+              Whether you&apos;re planning an intimate celebration or a full wedding
+              weekend, we&apos;d be honoured to learn more about your vision.
             </p>
 
             <div className="mt-12 space-y-8">
@@ -180,18 +197,18 @@ const [selectedDate, setSelectedDate] = useState<Date>();
               />
 
               <DatePicker
-  value={selectedDate}
-  onChange={(date) => {
-    setSelectedDate(date);
+                value={selectedDate}
+                onChange={(date) => {
+                  setSelectedDate(date);
 
-    setFormData((currentFormData) => ({
-      ...currentFormData,
-      weddingDate: date
-        ? date.toISOString().split("T")[0]
-        : "",
-    }));
-  }}
-/>
+                  setFormData((currentFormData) => ({
+                    ...currentFormData,
+                    weddingDate: date
+                      ? date.toISOString().split("T")[0]
+                      : "",
+                  }));
+                }}
+              />
               <select
                 name="serviceInterestedIn"
                 value={formData.serviceInterestedIn}
@@ -213,20 +230,20 @@ const [selectedDate, setSelectedDate] = useState<Date>();
               />
 
               <select
-  name="referralSource"
-  value={formData.referralSource}
-  onChange={handleChange}
-  className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
->
-  <option value="">How did you hear about us?</option>
-  <option value="Google Search">Google</option>
-  <option value="Instagram">Instagram</option>
-  <option value="Facebook">Facebook</option>
-  <option value="Friend or Family">Friend / Family</option>
-  <option value="Referral">Vendor Referral</option>
-  <option value="WeddingWire">WeddingWire</option>
-  <option value="Other">Other</option>
-</select>
+                name="referralSource"
+                value={formData.referralSource}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
+              >
+                <option value="">How did you hear about us?</option>
+                <option value="Google Search">Google</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Friend or Family">Friend / Family</option>
+                <option value="Referral">Vendor Referral</option>
+                <option value="WeddingWire">WeddingWire</option>
+                <option value="Other">Other</option>
+              </select>
 
               <textarea
                 rows={6}
@@ -239,10 +256,17 @@ const [selectedDate, setSelectedDate] = useState<Date>();
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#C8B48A] py-4 text-sm uppercase tracking-[0.25em] text-white transition hover:bg-[#b69b6b]"
+                disabled={isSubmitting}
+                className="w-full rounded-full bg-[#C8B48A] py-4 text-sm uppercase tracking-[0.25em] text-white transition hover:bg-[#b69b6b] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Send Inquiry
+                {isSubmitting ? "Sending..." : "Send Inquiry"}
               </button>
+
+              {submitMessage ? (
+                <p className="text-center text-sm text-[#3E3A36]">
+                  {submitMessage}
+                </p>
+              ) : null}
 
             </form>
 

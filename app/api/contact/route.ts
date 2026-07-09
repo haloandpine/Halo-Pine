@@ -57,6 +57,21 @@ export async function POST(request: Request) {
       html,
     });
 
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "Thank you for contacting Halo & Pine",
+      html: `
+        <p>Hello ${fullName},</p>
+        <p>Thank you for reaching out to Halo & Pine Wedding Coordination.</p>
+        <p>We have received your inquiry and will review your wedding details shortly.</p>
+        <p>We typically respond within 24–48 hours.</p>
+        <p>We're excited to learn more about your special day.</p>
+        <p>Warm regards,</p>
+        <p>Halo & Pine Wedding Coordination<br />https://www.haloandpine.ca</p>
+      `,
+    });
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("CONTACT API ERROR:", error);
