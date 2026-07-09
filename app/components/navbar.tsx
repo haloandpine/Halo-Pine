@@ -1,8 +1,13 @@
 "use client";
+import { Cinzel } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Logo from "./Logo";
+
+const brandFont = Cinzel({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -39,8 +44,14 @@ export default function Navbar() {
       aria-label="Primary"
       className={`fixed top-0 left-0 z-50 w-full bg-[#F8F4EF] transition-all duration-500 ease-out ${scrolled ? "shadow-[0_10px_30px_-20px_rgba(0,0,0,0.22)] border-b border-black/5" : "shadow-none border-b border-transparent"} py-[14px] md:py-[22px]`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-8">
-        <Logo />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 md:px-8">
+        <Link
+          href="/"
+          aria-label="Halo & Pine home"
+          className={`${brandFont.className} shrink-0 whitespace-nowrap text-[20px] font-normal leading-none tracking-[0.10em] text-[#222222] md:text-[28px] md:tracking-[0.12em]`}
+        >
+          HALO &amp; PINE
+        </Link>
         <button
           type="button"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -63,7 +74,7 @@ export default function Navbar() {
           </span>
         </button>
 
-        <div className="no-scrollbar hidden w-full flex-nowrap items-center justify-start gap-2 overflow-x-auto whitespace-nowrap text-[11px] uppercase tracking-[0.2em] text-[#222222] transition-colors duration-500 sm:gap-6 sm:text-xs md:flex md:w-auto md:justify-center md:gap-6 md:text-sm md:tracking-widest">
+        <div className="no-scrollbar hidden w-full flex-nowrap items-center justify-start gap-2 overflow-x-auto whitespace-nowrap text-[11px] uppercase tracking-[0.18em] text-[#222222] transition-colors duration-500 sm:gap-6 sm:text-xs md:flex md:w-auto md:justify-center md:gap-6 md:text-sm md:tracking-[0.20em]">
           <Link
             href="/"
             aria-current={pathname === "/" ? "page" : undefined}
@@ -95,7 +106,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             aria-current={pathname === "/contact" ? "page" : undefined}
-            className="rounded-full bg-[#C8B48A] px-4 py-2.5 text-black transition hover:bg-[#b79f72] md:py-2"
+            className="rounded-full px-3 py-2 transition hover:opacity-70 md:px-2 md:py-1"
           >
             Contact
           </Link>
@@ -138,7 +149,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             aria-current={pathname === "/contact" ? "page" : undefined}
-            className="mt-2 inline-flex w-fit rounded-full bg-[#C8B48A] px-5 py-3 text-black transition hover:bg-[#b79f72]"
+            className="mt-2 inline-flex w-fit rounded-full px-2 py-3 transition hover:opacity-70"
           >
             Contact
           </Link>
