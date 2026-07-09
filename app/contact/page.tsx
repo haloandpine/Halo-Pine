@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "../components/DatePicker";
 
 const initialFormData = {
@@ -18,8 +18,21 @@ const initialFormData = {
 export default function ContactPage() {
   const [formData, setFormData] = useState(initialFormData);
   const [selectedDate, setSelectedDate] = useState<Date>();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitState, setSubmitState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [showSuccessCard, setShowSuccessCard] = useState(false);
+
+  useEffect(() => {
+    if (submitState !== "success") {
+      setShowSuccessCard(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setShowSuccessCard(true);
+    }, 850);
+
+    return () => window.clearTimeout(timer);
+  }, [submitState]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -27,6 +40,11 @@ export default function ContactPage() {
     >
   ) => {
     const { name, value } = e.target;
+
+    if (submitState === "success" || submitState === "error") {
+      setSubmitState("idle");
+      setShowSuccessCard(false);
+    }
 
     setFormData((currentFormData) => ({
       ...currentFormData,
@@ -37,12 +55,12 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (isSubmitting) {
+    if (submitState === "sending") {
       return;
     }
 
-    setIsSubmitting(true);
-    setSubmitMessage("");
+    setSubmitState("sending");
+    setShowSuccessCard(false);
 
     try {
       const response = await fetch("/api/contact", {
@@ -59,11 +77,9 @@ export default function ContactPage() {
 
       setFormData(initialFormData);
       setSelectedDate(undefined);
-      setSubmitMessage("Inquiry sent successfully!");
+      setSubmitState("success");
     } catch {
-      setSubmitMessage("Something went wrong.");
-    } finally {
-      setIsSubmitting(false);
+      setSubmitState("error");
     }
   };
 
@@ -199,6 +215,11 @@ export default function ContactPage() {
               <DatePicker
                 value={selectedDate}
                 onChange={(date) => {
+                  if (submitState === "success" || submitState === "error") {
+                    setSubmitState("idle");
+                    setShowSuccessCard(false);
+                  }
+
                   setSelectedDate(date);
 
                   setFormData((currentFormData) => ({
@@ -256,16 +277,48 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full rounded-full bg-[#C8B48A] py-4 text-sm uppercase tracking-[0.25em] text-white transition hover:bg-[#b69b6b] disabled:cursor-not-allowed disabled:opacity-70"
+                disabled={submitState === "sending"}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8B48A] py-4 text-sm uppercase tracking-[0.25em] text-white transition hover:bg-[#b69b6b] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isSubmitting ? "Sending..." : "Send Inquiry"}
+                {submitState === "sending" ? (
+                  <>
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                    Sending...
+                  </>
+                ) : "Send Inquiry"}
               </button>
 
-              {submitMessage ? (
-                <p className="text-center text-sm text-[#3E3A36]">
-                  {submitMessage}
-                </p>
+              {submitState === "success" && !showSuccessCard ? (
+                <div className="flex items-center justify-center rounded-2xl border border-[#d6ead8] bg-[#f4fbf5] py-5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#dff2e2]">
+                    <svg
+                      className="h-6 w-6 animate-[luxury-check_850ms_ease-out_forwards] text-[#5b8a63]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+                </div>
+              ) : null}
+
+              {submitState === "success" && showSuccessCard ? (
+                <div className="rounded-2xl border border-[#d6ead8] bg-[#f7fcf7] px-6 py-5 text-center">
+                  <p className="font-serif text-2xl text-[#3E3A36]">Inquiry sent successfully!</p>
+                  <p className="mt-2 text-sm leading-7 text-[#6a6a6a]">
+                    Thank you for sharing your details. We will be in touch within 24-48 hours.
+                  </p>
+                </div>
+              ) : null}
+
+              {submitState === "error" ? (
+                <div className="rounded-2xl border border-[#ead6d6] bg-[#fcf7f7] px-5 py-4 text-center text-sm text-[#7a4b4b]">
+                  Something went wrong. Please try again.
+                </div>
               ) : null}
 
             </form>
