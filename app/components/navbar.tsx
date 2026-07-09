@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -27,16 +27,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 z-50 w-full bg-[#F8F4EF] transition-all duration-500 ease-out ${scrolled ? "shadow-[0_10px_30px_-20px_rgba(0,0,0,0.22)] border-b border-black/5" : "shadow-none border-b border-transparent"} py-[14px] md:py-[22px]`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-8">
-        <Link href="/" className="shrink-0">
-  <Image
-    src="/logo.PNG"
-    alt="Halo & Pine"
-    width={220}
-    height={60}
-    className="h-10 w-auto object-contain"
-    priority
-  />
-</Link>
+        <Logo />
         <div className="no-scrollbar flex w-full flex-nowrap items-center justify-start gap-2 overflow-x-auto whitespace-nowrap text-[11px] uppercase tracking-[0.2em] text-[#222222] transition-colors duration-500 sm:gap-6 sm:text-xs md:w-auto md:justify-center md:gap-6 md:text-sm md:tracking-widest">
           <Link
             href="/"
