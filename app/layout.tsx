@@ -18,7 +18,7 @@ const baseSchemaGraph = {
       name: "Halo & Pine",
       url: apexSiteUrl,
       email: "info@haloandpine.ca",
-      logo: `${siteUrl}/logo.PNG`,
+      logo: `${siteUrl}/logo.png`,
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -136,9 +136,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/logo.PNG",
-    shortcut: "/logo.PNG",
-    apple: "/logo.PNG",
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
   robots: {
     index: true,
