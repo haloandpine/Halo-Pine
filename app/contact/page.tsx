@@ -21,10 +21,12 @@ export default function ContactPage() {
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((currentFormData) => ({
+      ...currentFormData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -182,12 +184,12 @@ const [selectedDate, setSelectedDate] = useState<Date>();
   onChange={(date) => {
     setSelectedDate(date);
 
-    setFormData({
-      ...formData,
+    setFormData((currentFormData) => ({
+      ...currentFormData,
       weddingDate: date
         ? date.toISOString().split("T")[0]
         : "",
-    });
+    }));
   }}
 />
               <select
@@ -197,9 +199,9 @@ const [selectedDate, setSelectedDate] = useState<Date>();
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               >
                 <option value="">Select Your Package</option>
-                <option>The Intimate</option>
-                <option>The Essential</option>
-                <option>The Signature</option>
+                <option value="The Intimate">The Intimate</option>
+                <option value="The Essential">The Essential</option>
+                <option value="The Signature">The Signature</option>
               </select>
 
               <input
