@@ -9,7 +9,7 @@ export default function Logo({ className }: LogoProps) {
   return (
     <Link href="/" className="shrink-0" aria-label="Halo & Pine home">
       <Image
-        src="/logo.png"
+        src="/logo.PNG"
         alt="Halo & Pine"
         width={220}
         height={60}
