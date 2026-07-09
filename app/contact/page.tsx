@@ -29,6 +29,8 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  
+  console.log("FORM DATA:", formData);
 
   const response = await fetch("/api/contact", {
     method: "POST",
