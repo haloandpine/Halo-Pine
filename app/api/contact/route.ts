@@ -1,149 +1,63 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resendApiKey = process.env.RESEND_API_KEY;
-
-console.log("RESEND KEY:", resendApiKey);
-console.log("HAS KEY:", !!resendApiKey);
-
-const SERVICE_OPTIONS = [
-  "The Intimate",
-  "The Essential",
-  "The Signature",
-] as const;
-
-type ServiceOption = (typeof SERVICE_OPTIONS)[number];
-
-const REFERRAL_OPTIONS = [
-  "Google Search",
-  "Instagram",
-  "Facebook",
-  "WeddingWire",
-  "Referral",
-  "Friend or Family",
-  "Other",
-] as const;
-
-type ReferralOption = (typeof REFERRAL_OPTIONS)[number];
-
-type ContactPayload = {
+type ContactBody = {
   fullName?: string;
+  lastName?: string;
   email?: string;
   phoneNumber?: string;
   weddingDate?: string;
-  venue?: string;
   serviceInterestedIn?: string;
+  venue?: string;
   referralSource?: string;
   message?: string;
 };
 
-const clean = (value?: string) => (value ?? "").trim();
-
 export async function POST(request: Request) {
-  let body: ContactPayload;
+  const body = (await request.json()) as ContactBody;
+  const { fullName, lastName, email, phoneNumber, weddingDate, serviceInterestedIn, venue, referralSource, message } = body;
+
+  if (!fullName) {
+    return NextResponse.json({ error: "fullName" }, { status: 400 });
+  }
+
+  if (!email) {
+    return NextResponse.json({ error: "email" }, { status: 400 });
+  }
+
+  if (!weddingDate) {
+    return NextResponse.json({ error: "weddingDate" }, { status: 400 });
+  }
+
+  if (!serviceInterestedIn) {
+    return NextResponse.json({ error: "serviceInterestedIn" }, { status: 400 });
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY!);
+
+  const html = `
+    <h2>New Wedding Inquiry</h2>
+    <p><strong>Full Name:</strong> ${fullName}</p>
+    ${lastName ? `<p><strong>Last Name:</strong> ${lastName}</p>` : ""}
+    <p><strong>Email:</strong> ${email}</p>
+    ${phoneNumber ? `<p><strong>Phone Number:</strong> ${phoneNumber}</p>` : ""}
+    <p><strong>Wedding Date:</strong> ${weddingDate}</p>
+    <p><strong>Service Interested In:</strong> ${serviceInterestedIn}</p>
+    ${venue ? `<p><strong>Venue:</strong> ${venue}</p>` : ""}
+    ${referralSource ? `<p><strong>Referral Source:</strong> ${referralSource}</p>` : ""}
+    ${message ? `<p><strong>Message:</strong><br />${message.replace(/\n/g, "<br />")}</p>` : ""}
+  `;
 
   try {
-    body = (await request.json()) as ContactPayload;
-  } catch {
-    return NextResponse.json(
-      { message: "Invalid request body." },
-      { status: 400 }
-    );
-  }
-
-  const fullName = clean(body.fullName);
-  const email = clean(body.email);
-  const phoneNumber = clean(body.phoneNumber);
-  const weddingDate = clean(body.weddingDate);
-  const venue = clean(body.venue);
-  const serviceInterestedIn = clean(body.serviceInterestedIn);
-  const referralSource = clean(body.referralSource);
-  const message = clean(body.message);
-  console.log({
-  fullName,
-  email,
-  weddingDate,
-  serviceInterestedIn,
-  referralSource,
-  message,
-});
-console.log("SERVICE:", serviceInterestedIn);
-console.log("REFERRAL:", referralSource);
-console.log("REFERRAL VALUE:", referralSource);
-console.log(
-  "VALID SERVICE:",
-  SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption)
-);
-console.log(
-  "VALID REFERRAL:",
-  REFERRAL_OPTIONS.includes(referralSource as ReferralOption)
-);
-console.log("ALL OPTIONS:", REFERRAL_OPTIONS);
-
-  if (!fullName || !email || !weddingDate || !serviceInterestedIn || !referralSource || !message) {
-    return NextResponse.json(
-      { message: "Please complete all required fields." },
-      { status: 400 }
-    );
-  }
-
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    return NextResponse.json(
-      { message: "Please provide a valid email address." },
-      { status: 400 }
-    );
-  }
-
-  if (!SERVICE_OPTIONS.includes(serviceInterestedIn as ServiceOption)) {
-    return NextResponse.json(
-      { message: "Please select a valid service option." },
-      { status: 400 }
-    );
-  }
-
-  if (!REFERRAL_OPTIONS.includes(referralSource as ReferralOption)) {
-    return NextResponse.json(
-      { message: "Please select a valid referral option." },
-      { status: 400 }
-    );
-  }
-
-  try {
-    if (!resendApiKey) {
-      throw new Error("RESEND_API_KEY is not configured.");
-    }
-
-    const resend = new Resend(resendApiKey);
-    const fromEmail = process.env.RESEND_FROM_EMAIL?.trim() || "Halo & Pine <onboarding@resend.dev>";
-    const toEmail = "info@haloandpine.ca";
-
-    const inquiryLines = [
-      `Name: ${fullName}`,
-      `Email: ${email}`,
-      `Phone: ${phoneNumber || "Not provided"}`,
-      `Wedding Date: ${weddingDate || "Not provided"}`,
-      `Venue: ${venue || "Not provided"}`,
-      `Service Interested In: ${serviceInterestedIn}`,
-      `How did you hear about us?: ${referralSource}`,
-      "",
-      "Wedding Details:",
-      message,
-    ];
-
-    const { error } = await resend.emails.send({
-      from: fromEmail,
-      to: toEmail,
-      subject: `New Wedding Inquiry - ${fullName}`,
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: process.env.CONTACT_EMAIL!,
       replyTo: email,
-      text: inquiryLines.join("\n"),
+      subject: `New Wedding Inquiry - ${fullName}`,
+      html,
     });
 
-    if (error) {
-      throw error;
-    }
-
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("CONTACT API ERROR:", error);
 
