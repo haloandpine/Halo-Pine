@@ -109,43 +109,53 @@ console.log("ALL OPTIONS:", REFERRAL_OPTIONS);
     );
   }
 
-  if (!resendApiKey) {
+  try {
+    if (!resendApiKey) {
+      throw new Error("RESEND_API_KEY is not configured.");
+    }
+
+    const resend = new Resend(resendApiKey);
+    const fromEmail = process.env.RESEND_FROM_EMAIL?.trim() || "Halo & Pine <onboarding@resend.dev>";
+    const toEmail = "info@haloandpine.ca";
+
+    const inquiryLines = [
+      `Name: ${fullName}`,
+      `Email: ${email}`,
+      `Phone: ${phoneNumber || "Not provided"}`,
+      `Wedding Date: ${weddingDate || "Not provided"}`,
+      `Venue: ${venue || "Not provided"}`,
+      `Service Interested In: ${serviceInterestedIn}`,
+      `How did you hear about us?: ${referralSource}`,
+      "",
+      "Wedding Details:",
+      message,
+    ];
+
+    const { error } = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
+      subject: `New Wedding Inquiry - ${fullName}`,
+      replyTo: email,
+      text: inquiryLines.join("\n"),
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("CONTACT API ERROR:", error);
+
     return NextResponse.json(
-      { message: "Email service is not configured." },
+      {
+        success: false,
+        error:
+          error instanceof Error
+            ? error.message
+            : JSON.stringify(error, null, 2),
+      },
       { status: 500 }
     );
   }
-
-  const resend = new Resend(resendApiKey);
-  const fromEmail = process.env.RESEND_FROM_EMAIL ?? "Halo & Pine <onboarding@resend.dev>";
-
-  const inquiryLines = [
-    `Name: ${fullName}`,
-    `Email: ${email}`,
-    `Phone: ${phoneNumber || "Not provided"}`,
-    `Wedding Date: ${weddingDate || "Not provided"}`,
-    `Venue: ${venue || "Not provided"}`,
-    `Service Interested In: ${serviceInterestedIn}`,
-    `How did you hear about us?: ${referralSource}`,
-    "",
-    "Wedding Details:",
-    message,
-  ];
-
-  const { error } = await resend.emails.send({
-    from: fromEmail,
-    to: ["info@haloandpine.ca"],
-    subject: `New Wedding Inquiry - ${fullName}`,
-    replyTo: email,
-    text: inquiryLines.join("\n"),
-  });
-
-  if (error) {
-    return NextResponse.json(
-      { message: "Failed to send your inquiry. Please try again." },
-      { status: 500 }
-    );
-  }
-
-  return NextResponse.json({ ok: true });
 }
