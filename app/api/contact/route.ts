@@ -78,6 +78,7 @@ console.log(
   "VALID REFERRAL:",
   REFERRAL_OPTIONS.includes(referralSource as ReferralOption)
 );
+console.log("ALL OPTIONS:", REFERRAL_OPTIONS);
 
   if (!fullName || !email || !weddingDate || !serviceInterestedIn || !referralSource || !message) {
     return NextResponse.json(
