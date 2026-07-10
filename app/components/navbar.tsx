@@ -13,9 +13,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isAbout = pathname === "/about";
-  const isContact = pathname === "/contact";
-  const scrollThreshold = isAbout ? 80 : isContact ? 80 : 100;
+  const scrollThreshold = 12;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +40,7 @@ export default function Navbar() {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 left-0 z-50 w-full bg-[#F8F4EF] transition-all duration-500 ease-out ${scrolled ? "shadow-[0_10px_30px_-20px_rgba(0,0,0,0.22)] border-b border-black/5" : "shadow-none border-b border-transparent"} py-[14px] md:py-[22px]`}
+      className={`fixed top-0 left-0 z-50 w-full border-b py-[14px] md:py-[22px] transition-[background-color,box-shadow,border-color] duration-300 ease-in-out ${scrolled ? "bg-[#f3eee7] border-black/5 shadow-[0_8px_24px_-18px_rgba(0,0,0,0.24)]" : "bg-white border-transparent shadow-none"}`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 md:px-8">
         <Link
@@ -115,7 +113,7 @@ export default function Navbar() {
 
       <div
         id="mobile-menu"
-        className={`fixed inset-0 z-40 bg-[#F8F4EF] px-8 pb-10 pt-28 transition-transform duration-300 md:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed inset-0 z-40 bg-white px-8 pb-10 pt-28 transition-transform duration-300 md:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex h-full flex-col gap-4 text-sm uppercase tracking-[0.3em] text-[#222222]">
           <Link
