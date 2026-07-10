@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Meet Kajal, the planner behind Halo & Pine in Port Coquitlam, British Columbia, and learn how calm leadership and precise coordination shape your wedding day.",
   alternates: {
-    canonical: "/planner",
+    canonical: "https://haloandpine.ca/planner",
   },
   keywords: [
     "meet your wedding planner",

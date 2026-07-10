@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Meet Kajal, founder of Halo & Pine in Port Coquitlam, British Columbia, and discover the calm, detail-focused wedding coordination approach behind our services.",
   alternates: {
-    canonical: "/about",
+    canonical: "https://haloandpine.ca/about",
   },
   keywords: [
     "about Halo and Pine",

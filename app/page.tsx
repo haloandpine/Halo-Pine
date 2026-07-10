@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Halo & Pine offers refined wedding coordination in Vancouver and the Lower Mainland, helping couples enjoy a calm, seamless, and beautifully managed celebration.",
   alternates: {
-    canonical: "/",
+    canonical: "https://haloandpine.ca/",
   },
   keywords: [
     "wedding coordination Vancouver",
