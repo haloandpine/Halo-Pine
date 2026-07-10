@@ -6,10 +6,10 @@ export default function Hero() {
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-36">
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid gap-16 md:grid-cols-2 md:items-start">
 
           {/* Left */}
-          <div>
+          <div className="md:-mt-10">
 
             <h1 className="text-5xl md:text-7xl font-serif font-light leading-[0.95] tracking-[-0.03em] text-[#3E3A36]">
               Thoughtful
@@ -19,12 +19,12 @@ export default function Hero() {
               Coordination
             </h1>
 
-            <p className="mt-8 max-w-md text-lg leading-8 text-neutral-600">
+            <p className="mt-6 max-w-md text-lg leading-8 text-neutral-600">
               Creating calm for your most meaningful day through thoughtful,
               intentional coordination across Greater Vancouver.
             </p>
 
-            <div className="md:mt-5 flex flex-wrap gap-4">
+            <div className="mt-4 flex flex-wrap gap-4 md:mt-5">
 
               <Link
                 href="/services"
