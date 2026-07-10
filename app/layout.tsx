@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 
-const siteUrl = "https://www.haloandpine.ca";
+const siteUrl = "https://haloandpine.ca";
 const apexSiteUrl = "https://haloandpine.ca";
 const organizationId = `${apexSiteUrl}/#organization`;
 const localBusinessId = `${apexSiteUrl}/#localbusiness`;

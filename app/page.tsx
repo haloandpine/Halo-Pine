@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Halo and Pine weddings",
   ],
   openGraph: {
-    url: "https://www.haloandpine.ca/",
+    url: "https://haloandpine.ca/",
     title: "Wedding Coordination in Vancouver | Halo & Pine",
     description:
       "Halo & Pine offers refined wedding coordination in Vancouver and the Lower Mainland for calm, seamless wedding days.",
@@ -47,7 +47,7 @@ export default function Home() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.haloandpine.ca/",
+        item: "https://haloandpine.ca/",
       },
     ],
   };

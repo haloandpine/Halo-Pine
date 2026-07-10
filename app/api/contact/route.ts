@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         <p>We typically respond within 24–48 hours.</p>
         <p>We're excited to learn more about your special day.</p>
         <p>Warm regards,</p>
-        <p>Halo & Pine Wedding Coordination<br />https://www.haloandpine.ca</p>
+        <p>Halo & Pine Wedding Coordination<br />https://haloandpine.ca</p>
       `,
     });
 

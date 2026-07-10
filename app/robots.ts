@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.haloandpine.ca/sitemap.xml",
-    host: "https://www.haloandpine.ca",
+    sitemap: "https://haloandpine.ca/sitemap.xml",
+    host: "https://haloandpine.ca",
   };
 }

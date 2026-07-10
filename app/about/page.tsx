@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "British Columbia wedding coordination",
   ],
   openGraph: {
-    url: "https://www.haloandpine.ca/about",
+    url: "https://haloandpine.ca/about",
     title: "About Halo & Pine | Port Coquitlam Wedding Coordination",
     description:
       "Meet Kajal and learn how Halo & Pine delivers calm, polished wedding coordination in Port Coquitlam, Greater Vancouver, and the Lower Mainland.",
@@ -46,13 +46,13 @@ export default function AboutPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.haloandpine.ca/",
+        item: "https://haloandpine.ca/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "About",
-        item: "https://www.haloandpine.ca/about",
+        item: "https://haloandpine.ca/about",
       },
     ],
   };

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Lower Mainland wedding planning",
   ],
   openGraph: {
-    url: "https://www.haloandpine.ca/planner",
+    url: "https://haloandpine.ca/planner",
     title: "Meet Your Wedding Planner in Port Coquitlam | Halo & Pine",
     description:
       "Meet Kajal and discover the calm, detail-focused wedding planning approach behind Halo & Pine in Greater Vancouver.",
@@ -48,13 +48,13 @@ export default function PlannerPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.haloandpine.ca/",
+        item: "https://haloandpine.ca/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Meet Your Planner",
-        item: "https://www.haloandpine.ca/planner",
+        item: "https://haloandpine.ca/planner",
       },
     ],
   };
@@ -68,8 +68,8 @@ export default function PlannerPage() {
     worksFor: {
       "@id": "https://haloandpine.ca/#organization",
     },
-    url: "https://www.haloandpine.ca/planner",
-    image: "https://www.haloandpine.ca/kajal.jpg",
+    url: "https://haloandpine.ca/planner",
+    image: "https://haloandpine.ca/kajal.jpg",
     homeLocation: {
       "@type": "Place",
       name: "Port Coquitlam, British Columbia, Canada",
