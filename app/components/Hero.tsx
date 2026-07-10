@@ -11,7 +11,7 @@ export default function Hero() {
           {/* Left */}
           <div className="md:-mt-20">
 
-            <h1 className="text-5xl md:translate-y-4 md:text-7xl font-serif font-light leading-[0.95] tracking-[-0.03em] text-[#3E3A36]">
+            <h1 className="text-5xl md:translate-y-3 md:text-7xl font-serif font-light leading-[0.95] tracking-[-0.03em] text-[#3E3A36]">
               Thoughtful
               <br />
               Wedding
