@@ -3,15 +3,15 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="border-t border-[#D8B46A]/70 bg-[#171717] text-white shadow-[0_-1px_0_rgba(216,180,106,0.12)]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-6 py-8 text-center md:flex-row md:items-center md:justify-between md:gap-6 md:px-10 md:py-7 lg:px-14">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-8 py-8 text-center md:flex-row md:items-center md:justify-between md:gap-6 md:px-12 md:py-7 lg:px-20">
         <div className="flex w-full justify-center md:w-auto md:flex-1 md:justify-start">
           <Image
             src="/logo-footer.PNG"
             alt="Halo & Pine"
-            width={220}
-            height={162}
-            sizes="(max-width: 767px) 170px, 220px"
-            className="h-auto w-[170px] md:w-[220px]"
+            width={240}
+            height={176}
+            sizes="(max-width: 767px) 60px, (max-width: 1023px) 84px, 88px"
+            className="h-[60px] w-auto md:h-[86px]"
           />
         </div>
 
