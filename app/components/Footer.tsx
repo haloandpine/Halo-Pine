@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="border-t border-[#D8B46A]/70 bg-[#171717] text-white shadow-[0_-1px_0_rgba(216,180,106,0.12)]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-8 py-8 text-center md:flex-row md:items-center md:justify-between md:gap-6 md:px-12 md:py-7 lg:px-20">
-        <div className="flex w-full justify-center md:w-auto md:flex-1 md:justify-start">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-8 py-8 text-center md:grid-cols-[1fr_auto_1fr] md:gap-6 md:px-12 md:py-7 lg:px-20">
+        <div className="flex w-full justify-center md:justify-start">
           <Image
             src="/logo-footer.PNG"
             alt="Halo & Pine"
@@ -15,11 +15,11 @@ export default function Footer() {
           />
         </div>
 
-        <p className="w-full text-xs tracking-[0.12em] text-white/75 md:w-auto md:flex-1 md:text-center">
+        <p className="w-full text-xs tracking-[0.12em] text-white/75 md:justify-self-center md:text-center">
           © 2026 Halo &amp; Pine. All rights reserved.
         </p>
 
-        <div className="flex w-full flex-col items-center gap-3 md:w-auto md:flex-1 md:items-end">
+        <div className="flex w-full flex-col items-center gap-3 md:justify-self-end md:items-end">
           <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
             <a
               href="mailto:info@haloandpine.ca"
