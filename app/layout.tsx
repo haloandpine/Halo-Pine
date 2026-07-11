@@ -19,15 +19,6 @@ const baseSchemaGraph = {
       url: apexSiteUrl,
       email: "info@haloandpine.ca",
       logo: `${siteUrl}/logo.PNG`,
-      contactPoint: [
-        {
-          "@type": "ContactPoint",
-          telephone: "+1-604-442-6406",
-          contactType: "customer service",
-          areaServed: "CA",
-          availableLanguage: ["English"],
-        },
-      ],
     },
     {
       "@type": "LocalBusiness",
@@ -35,7 +26,6 @@ const baseSchemaGraph = {
       name: "Halo & Pine",
       image: `${siteUrl}/hero.PNG`,
       url: apexSiteUrl,
-      telephone: "+1-604-442-6406",
       email: "info@haloandpine.ca",
       address: {
         "@type": "PostalAddress",

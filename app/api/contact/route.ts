@@ -5,7 +5,6 @@ type ContactBody = {
   fullName?: string;
   lastName?: string;
   email?: string;
-  phoneNumber?: string;
   weddingDate?: string;
   serviceInterestedIn?: string;
   venue?: string;
@@ -15,7 +14,7 @@ type ContactBody = {
 
 export async function POST(request: Request) {
   const body = (await request.json()) as ContactBody;
-  const { fullName, lastName, email, phoneNumber, weddingDate, serviceInterestedIn, venue, referralSource, message } = body;
+  const { fullName, lastName, email, weddingDate, serviceInterestedIn, venue, referralSource, message } = body;
 
   if (!fullName) {
     return NextResponse.json({ error: "fullName" }, { status: 400 });
@@ -40,7 +39,6 @@ export async function POST(request: Request) {
     <p><strong>Full Name:</strong> ${fullName}</p>
     ${lastName ? `<p><strong>Last Name:</strong> ${lastName}</p>` : ""}
     <p><strong>Email:</strong> ${email}</p>
-    ${phoneNumber ? `<p><strong>Phone Number:</strong> ${phoneNumber}</p>` : ""}
     <p><strong>Wedding Date:</strong> ${weddingDate}</p>
     <p><strong>Service Interested In:</strong> ${serviceInterestedIn}</p>
     ${venue ? `<p><strong>Venue:</strong> ${venue}</p>` : ""}

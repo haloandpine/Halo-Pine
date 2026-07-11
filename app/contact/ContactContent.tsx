@@ -119,7 +119,6 @@ export default function ContactContent() {
     const payload = {
       fullName: String(formData.get("fullName") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
-      phoneNumber: String(formData.get("phoneNumber") ?? "").trim(),
       weddingDate: String(formData.get("weddingDate") ?? "").trim(),
       venue: String(formData.get("venue") ?? "").trim(),
       serviceInterestedIn: String(formData.get("serviceInterestedIn") ?? "").trim(),
@@ -190,7 +189,6 @@ export default function ContactContent() {
             <div data-reveal className="space-y-7 text-[#2B2B2B]">
               <div className="space-y-4 text-[17px] leading-8 text-[#3F3F3F]">
                 <p>📍 Port Coquitlam, BC</p>
-                <p>📞 (604) 442-6406</p>
                 <p>✉️ info@haloandpine.ca</p>
               </div>
 
@@ -270,18 +268,6 @@ export default function ContactContent() {
                       autoComplete="email"
                       inputMode="email"
                       aria-required="true"
-                      className={controlClassName}
-                    />
-                  </label>
-
-                  <label htmlFor="contact-phone" className="block">
-                    <span className="mb-2 block text-sm uppercase tracking-[0.2em] text-[#6E6046]">Phone</span>
-                    <input
-                      id="contact-phone"
-                      name="phoneNumber"
-                      type="tel"
-                      autoComplete="tel"
-                      inputMode="tel"
                       className={controlClassName}
                     />
                   </label>
