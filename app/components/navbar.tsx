@@ -81,13 +81,6 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            href="/about"
-            aria-current={pathname === "/about" ? "page" : undefined}
-            className="rounded-full px-3 py-2 transition hover:opacity-70 md:px-2 md:py-1"
-          >
-            About
-          </Link>
-          <Link
             href="/services"
             aria-current={pathname === "/services" ? "page" : undefined}
             className="rounded-full px-3 py-2 transition hover:opacity-70 md:px-2 md:py-1"
@@ -122,13 +115,6 @@ export default function Navbar() {
             className="rounded-full px-2 py-3 transition hover:opacity-70"
           >
             Home
-          </Link>
-          <Link
-            href="/about"
-            aria-current={pathname === "/about" ? "page" : undefined}
-            className="rounded-full px-2 py-3 transition hover:opacity-70"
-          >
-            About
           </Link>
           <Link
             href="/services"
