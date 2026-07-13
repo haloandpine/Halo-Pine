@@ -35,6 +35,16 @@ export default function PackageDetailsModal({
           isOpen ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-95 opacity-0"
         }`}
       >
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close package details"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#CFC3AF] text-xl leading-none text-[#2B2B2B] transition duration-300 hover:bg-[#F3EDE2]"
+          >
+            ×
+          </button>
+        </div>
         {servicePackage ? (
           <div className="max-h-[80vh] overflow-y-auto pr-0.5 md:pr-1">
             <p className="text-xs uppercase tracking-[0.3em] text-[#8A7247]">Package Details</p>
@@ -60,18 +70,17 @@ export default function PackageDetailsModal({
 
             <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center md:mt-12 md:gap-4">
               <Link
-                href={`/contact?service=${encodeURIComponent(servicePackage.title)}`}
+                href="/contact"
                 className="premium-button inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.2em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72] md:min-h-[52px] md:px-10 md:py-4"
               >
                 Book Consultation
               </Link>
-              <button
-                type="button"
-                onClick={onClose}
-                className="premium-button inline-flex min-h-[48px] items-center justify-center rounded-full border border-[#CFC3AF] bg-transparent px-8 py-3.5 text-sm font-medium uppercase tracking-[0.2em] text-[#2B2B2B] transition duration-300 hover:bg-[#F3EDE2] md:min-h-[52px] md:px-10 md:py-4"
+              <a
+                href="mailto:info@haloandpine.ca"
+                className="text-sm text-[#6a5a3a] underline underline-offset-4 transition hover:text-[#8A7247]"
               >
-                Close
-              </button>
+                Email Us
+              </a>
             </div>
           </div>
         ) : null}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 type ServicePackage = {
@@ -175,9 +176,10 @@ export default function ServicesPage() {
 
               <button
                 onClick={() => setSelectedId(null)}
-                className="rounded-full border border-neutral-300 px-4 py-2 text-sm transition hover:bg-neutral-100"
+                aria-label="Close package details"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-xl leading-none transition hover:bg-neutral-100"
               >
-                Close
+                ×
               </button>
             </div>
 
@@ -210,12 +212,18 @@ export default function ServicesPage() {
             </ul>
 
             <div className="mt-12">
-              <button
-                onClick={() => setSelectedId(null)}
-                className="rounded-full bg-[#C8B48A] px-8 py-4 text-sm uppercase tracking-[0.25em] transition hover:bg-[#b79f72]"
+              <Link
+                href="/contact"
+                className="inline-flex rounded-full bg-[#C8B48A] px-8 py-4 text-sm uppercase tracking-[0.25em] transition hover:bg-[#b79f72]"
               >
-                Close
-              </button>
+                Book Consultation
+              </Link>
+              <a
+                href="mailto:info@haloandpine.ca"
+                className="ml-5 text-sm text-[#6a5a3a] underline underline-offset-4 transition hover:text-[#8A7247]"
+              >
+                Email Us
+              </a>
             </div>
           </div>
         </div>
