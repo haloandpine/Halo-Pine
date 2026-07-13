@@ -213,7 +213,7 @@ export default function ServicesPage() {
 
             <div className="mt-12">
               <Link
-                href="/contact"
+                href={`/contact?package=${encodeURIComponent(selectedPackage.id)}`}
                 className="inline-flex rounded-full bg-[#C8B48A] px-8 py-4 text-sm uppercase tracking-[0.25em] transition hover:bg-[#b79f72]"
               >
                 Book Consultation

@@ -7,7 +7,6 @@ const initialFormData = {
   fullName: "",
   lastName: "",
   email: "",
-  phoneNumber: "",
   weddingDate: "",
   serviceInterestedIn: "",
   venue: "",
@@ -15,11 +14,34 @@ const initialFormData = {
   message: "",
 };
 
+const packageMap: Record<string, string> = {
+  intimate: "The Intimate — Elopements & Micro Weddings",
+  essential: "The Essential — Day-of Coordination",
+  signature: "The Signature — Month-of Coordination",
+};
+
 export default function ContactPage() {
   const [formData, setFormData] = useState(initialFormData);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [submitState, setSubmitState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [showSuccessCard, setShowSuccessCard] = useState(false);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const packageKey = (searchParams.get("package") ?? "").toLowerCase();
+    const selectedPackage = packageMap[packageKey] ?? "";
+
+    setFormData((currentFormData) => {
+      if (currentFormData.serviceInterestedIn === selectedPackage) {
+        return currentFormData;
+      }
+
+      return {
+        ...currentFormData,
+        serviceInterestedIn: selectedPackage,
+      };
+    });
+  }, []);
 
   useEffect(() => {
     if (submitState !== "success") {
@@ -204,14 +226,6 @@ export default function ContactPage() {
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               />
 
-              <input
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                placeholder="Phone"
-                className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
-              />
-
               <DatePicker
                 value={selectedDate}
                 onChange={(date) => {
@@ -237,9 +251,9 @@ export default function ContactPage() {
                 className="w-full rounded-xl border border-[#DDD] p-4 outline-none"
               >
                 <option value="">Select Your Package</option>
-                <option value="The Intimate">The Intimate</option>
-                <option value="The Essential">The Essential</option>
-                <option value="The Signature">The Signature</option>
+                <option value="The Intimate — Elopements & Micro Weddings">The Intimate — Elopements & Micro Weddings</option>
+                <option value="The Essential — Day-of Coordination">The Essential — Day-of Coordination</option>
+                <option value="The Signature — Month-of Coordination">The Signature — Month-of Coordination</option>
               </select>
 
               <input

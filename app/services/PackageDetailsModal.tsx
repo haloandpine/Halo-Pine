@@ -70,7 +70,7 @@ export default function PackageDetailsModal({
 
             <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center md:mt-12 md:gap-4">
               <Link
-                href="/contact"
+                href={`/contact?package=${encodeURIComponent(servicePackage.id)}`}
                 className="premium-button inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#C8B48A] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.2em] text-[#1F1F1F] transition duration-300 hover:bg-[#b79f72] md:min-h-[52px] md:px-10 md:py-4"
               >
                 Book Consultation
