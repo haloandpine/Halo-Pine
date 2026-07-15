@@ -113,15 +113,18 @@ export const metadata: Metadata = {
     template: "%s | Halo & Pine",
   },
   description:
-    "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+    "Wedding coordination in Vancouver , Port Coquitlam and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
   applicationName: "Halo & Pine",
   keywords: [
-    "wedding coordinator Vancouver",
-    "day of coordination Vancouver",
-    "month of coordination BC",
-    "wedding planning Port Coquitlam",
-    "Halo and Pine",
-  ],
+  "wedding coordinator Vancouver",
+  "wedding planner Vancouver",
+  "Port Coquitlam wedding coordinator",
+  "month of coordination Vancouver",
+  "day of wedding coordinator BC",
+  "elopement planner Vancouver",
+  "Lower Mainland wedding coordinator",
+  "Halo and Pine wedding coordination",
+],
   alternates: {
     canonical: "/",
   },
@@ -148,7 +151,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "Halo & Pine Wedding Coordination",
     description:
-      "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+      "Wedding coordination in Vancouver , Port Coquitlam and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
     images: [
       {
         url: "/hero.PNG",
@@ -162,7 +165,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Halo & Pine Wedding Coordination",
     description:
-      "Luxury wedding coordination in Vancouver and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
+      "Wedding coordination in Vancouver , Port Coquitlam and the Lower Mainland. Calm, seamless, and beautifully organized wedding days.",
     images: ["/hero.PNG"],
   },
 };

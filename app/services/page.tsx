@@ -39,7 +39,7 @@ const packages: ServicePackage[] = [
     id: "signature",
     title: "The Signature — Month-of Coordination",
     price: "Starting at $1,995",
-    image: "/monthof.jpg",
+    image: "/custom.jpg",
     shortDescription:
       "For couples who have done the planning and want experienced leadership in the final stretch.",
     fullDescription:
@@ -59,7 +59,7 @@ const packages: ServicePackage[] = [
     id: "intimate",
     title: "The Intimate — Elopements & Micro Weddings",
     price: "Starting at $795",
-    image: "/custom.jpg",
+    image: "/monthof.jpg",
     shortDescription:
       "Designed for celebrations with up to 40 guests.",
     fullDescription:
